@@ -34,7 +34,7 @@ class Tag extends Component {
       onClick={props.onTagClicked}
       onKeyDown={props.onTagClicked}
       onTouchStart={props.onTagClicked}>
-      {label}
+      <span className='tag-name'>{label}</span>
       <RemoveComponent
         tag={props.tag}
         className={classNames.remove}
