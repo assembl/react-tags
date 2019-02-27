@@ -29,7 +29,7 @@ Because I was looking for an excuse to build a standalone component and publish 
 Check it out [here](https://stackblitz.com/edit/react-tag-input-1nelrc)
 
 ### Installation
-The preferred way of using the component is via NPM
+The preferred way of using the component is via NPM (npm version 6.4.1 and node version 8.11.2)
 
 ```
 npm install --save react-tag-input
