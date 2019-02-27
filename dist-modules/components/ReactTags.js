@@ -373,7 +373,7 @@ var ReactTags = function (_Component) {
           renderSuggestion: this.props.renderSuggestion
         })
       ) : null;
-
+      console.log(this.state.showInput);
       return _react2.default.createElement(
         'div',
         { className: (0, _classnames2.default)(this.state.classNames.tags, 'react-tags-wrapper') },
