@@ -334,6 +334,7 @@ class ReactTags extends Component {
       query: '',
       selectionMode: false,
       selectedIndex: -1,
+      showInput: false
     });
 
     this.resetAndFocusInput();
@@ -456,8 +457,7 @@ class ReactTags extends Component {
       <div className={ClassNames(this.state.classNames.tags, 'react-tags-wrapper')}>
         <div className={this.state.classNames.selected}>
           {tagItems}
-          {this.state.showInput ? tagInput : null}
-          {showInputButton}
+          {this.state.showInput ? tagInput : showInputButton}
         </div>
       </div>
     );

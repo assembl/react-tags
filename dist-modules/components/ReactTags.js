@@ -381,8 +381,7 @@ var ReactTags = function (_Component) {
           'div',
           { className: this.state.classNames.selected },
           tagItems,
-          this.state.showInput ? tagInput : null,
-          showInputButton
+          this.state.showInput ? tagInput : showInputButton
         )
       );
     }
@@ -491,7 +490,8 @@ var _initialiseProps = function _initialiseProps() {
     _this5.setState({
       query: '',
       selectionMode: false,
-      selectedIndex: -1
+      selectedIndex: -1,
+      showInput: false
     });
 
     _this5.resetAndFocusInput();
