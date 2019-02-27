@@ -376,10 +376,10 @@ var ReactTags = function (_Component) {
           'div',
           { className: this.state.classNames.selected },
           tagItems,
-          this.props.inline && showInputButton,
+          this.props.inline && !this.state.showInput && showInputButton,
           this.props.inline && this.state.showInput && tagInput
         ),
-        !this.props.inline && showInputButton,
+        !this.props.inline && !this.state.showInput && showInputButton,
         !this.props.inline && this.state.showInput && tagInput
       );
     }
