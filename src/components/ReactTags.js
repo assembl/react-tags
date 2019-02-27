@@ -11,6 +11,8 @@ import Tag from './Tag';
 
 import { buildRegExpFromDelimiters } from './utils';
 
+import AddComponent from './AddComponent';
+
 //Constants
 import {
   KEYS,
@@ -52,6 +54,7 @@ class ReactTags extends Component {
     handleInputBlur: PropTypes.func,
     minQueryLength: PropTypes.number,
     shouldRenderSuggestions: PropTypes.func,
+    addComponent: PropTypes.func,
     removeComponent: PropTypes.func,
     autocomplete: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
     readOnly: PropTypes.bool,
@@ -377,6 +380,7 @@ class ReactTags extends Component {
           labelField={labelField}
           onDelete={this.handleDelete.bind(this, index)}
           moveTag={moveTag}
+          addComponent={addComponent}
           removeComponent={removeComponent}
           onTagClicked={this.handleTagClick.bind(this, index)}
           readOnly={readOnly}
@@ -394,10 +398,14 @@ class ReactTags extends Component {
   render() {
     const tagItems = this.getTagItems();
 
-    const showInputButton = !this.props.readOnly ? (
-      <button onClick={this.getInput}>+</button>
-    ) :
-    null;
+    const showInputButton = (
+      <AddComponent
+        className={'add-button'}
+        addComponent={this.props.addComponent}
+        onClick={this.getInput}
+        readOnly={this.props.readOnly}
+      />
+    );
 
     // get the suggestions for the given query
     const query = this.state.query.trim(),

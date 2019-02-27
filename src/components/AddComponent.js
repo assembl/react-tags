@@ -1,0 +1,31 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const plusStr = String.fromCharCode(43);
+
+const AddComponent = (props) => {
+  const { readOnly, addComponent, onClick, className } = props;
+  if (readOnly) {
+    return null;
+  }
+
+  if (addComponent) {
+    const Component = addComponent;
+    return <Component {...props} />;
+  }
+
+  return (
+    <button onClick={onClick} className={className} >
+      {plusStr}
+    </button>
+  );
+};
+
+AddComponent.propTypes = {
+  className: PropTypes.string,
+  onClick: PropTypes.func.isRequired,
+  readOnly: PropTypes.bool,
+  addComponent: PropTypes.func,
+};
+
+export default AddComponent;

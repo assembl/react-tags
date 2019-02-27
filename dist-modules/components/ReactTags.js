@@ -47,6 +47,10 @@ var _Tag2 = _interopRequireDefault(_Tag);
 
 var _utils = require('./utils');
 
+var _AddComponent = require('./AddComponent');
+
+var _AddComponent2 = _interopRequireDefault(_AddComponent);
+
 var _constants = require('./constants');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -318,11 +322,12 @@ var ReactTags = function (_Component) {
 
       var tagItems = this.getTagItems();
 
-      var showInputButton = !this.props.readOnly ? _react2.default.createElement(
-        'button',
-        { onClick: this.getInput },
-        '+'
-      ) : null;
+      var showInputButton = _react2.default.createElement(_AddComponent2.default, {
+        className: 'add-button',
+        addComponent: this.props.addComponent,
+        onClick: this.getInput,
+        readOnly: this.props.readOnly
+      });
 
       // get the suggestions for the given query
       var query = this.state.query.trim(),
@@ -415,6 +420,7 @@ ReactTags.propTypes = {
   handleInputBlur: _propTypes2.default.func,
   minQueryLength: _propTypes2.default.number,
   shouldRenderSuggestions: _propTypes2.default.func,
+  addComponent: _propTypes2.default.func,
   removeComponent: _propTypes2.default.func,
   autocomplete: _propTypes2.default.oneOfType([_propTypes2.default.bool, _propTypes2.default.number]),
   readOnly: _propTypes2.default.bool,
@@ -508,6 +514,7 @@ var _initialiseProps = function _initialiseProps() {
         labelField: labelField,
         onDelete: _this5.handleDelete.bind(_this5, index),
         moveTag: moveTag,
+        addComponent: addComponent,
         removeComponent: removeComponent,
         onTagClicked: _this5.handleTagClick.bind(_this5, index),
         readOnly: readOnly,
