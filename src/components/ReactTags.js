@@ -334,7 +334,7 @@ class ReactTags extends Component {
       query: '',
       selectionMode: false,
       selectedIndex: -1,
-      showInput: false
+      showInput: false,
     });
 
     this.resetAndFocusInput();
