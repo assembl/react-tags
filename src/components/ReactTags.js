@@ -338,6 +338,8 @@ class ReactTags extends Component {
     });
 
     this.resetAndFocusInput();
+
+    console.log(this.state.showInput);
   };
 
   handleSuggestionClick(i) {
@@ -452,7 +454,6 @@ class ReactTags extends Component {
         />
       </div>
     ) : null;
-    console.log(this.state.showInput);
     return (
       <div className={ClassNames(this.state.classNames.tags, 'react-tags-wrapper')}>
         <div className={this.state.classNames.selected}>
