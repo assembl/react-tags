@@ -96,6 +96,7 @@ class ReactTags extends Component {
       suggestions,
       query: '',
       isFocused: false,
+      showInput: false,
       selectedIndex: -1,
       selectionMode: false,
       classNames: { ...DEFAULT_CLASSNAMES, ...classNames },
@@ -387,58 +388,8 @@ class ReactTags extends Component {
   };
 
   getInput = () => {
-    const {
-      readOnly
-    } = this.props;
-    if (!readOnly) {
-      // get the suggestions for the given query
-      const query = this.state.query.trim(),
-      selectedIndex = this.state.selectedIndex,
-      suggestions = this.state.suggestions,
-      placeholder = this.props.placeholder,
-      inputName = this.props.name,
-      inputId = this.props.id,
-      maxLength = this.props.maxLength;
-
-      console.log('getInput');
-
-      return (
-        <div className={this.state.classNames.tagInput}>
-          <input
-            ref={(input) => {
-              this.textInput = input;
-            }}
-            className={this.state.classNames.tagInputField}
-            type="text"
-            placeholder={placeholder}
-            aria-label={placeholder}
-            onFocus={this.handleFocus}
-            onBlur={this.handleBlur}
-            onChange={this.handleChange}
-            onKeyDown={this.handleKeyDown}
-            onPaste={this.handlePaste}
-            name={inputName}
-            id={inputId}
-            maxLength={maxLength}
-            value={this.props.inputValue}
-          />
-
-          <Suggestions
-            query={query}
-            suggestions={suggestions}
-            labelField={this.props.labelField}
-            selectedIndex={selectedIndex}
-            handleClick={this.handleSuggestionClick}
-            handleHover={this.handleSuggestionHover}
-            minQueryLength={this.props.minQueryLength}
-            shouldRenderSuggestions={this.props.shouldRenderSuggestions}
-            isFocused={this.state.isFocused}
-            classNames={this.state.classNames}
-            renderSuggestion={this.props.renderSuggestion}
-          />
-        </div>
-      );
-    }
+    console.log(showInput);
+    return this.setState({showInput: true});
   };
 
   render() {
@@ -449,13 +400,61 @@ class ReactTags extends Component {
     ) :
     null;
 
+    // get the suggestions for the given query
+    const query = state.query.trim(),
+    selectedIndex = this.state.selectedIndex,
+    suggestions = this.state.suggestions,
+    placeholder = this.props.placeholder,
+    inputName = this.props.name,
+    inputId = this.props.id,
+    maxLength = this.props.maxLength;
+
+    const tagInput = showInput ? (
+      <div className={this.state.classNames.tagInput}>
+        <input
+          ref={(input) => {
+            this.textInput = input;
+          }}
+          className={this.state.classNames.tagInputField}
+          type="text"
+          placeholder={placeholder}
+          aria-label={placeholder}
+          onFocus={this.handleFocus}
+          onBlur={this.handleBlur}
+          onChange={this.handleChange}
+          onKeyDown={this.handleKeyDown}
+          onPaste={this.handlePaste}
+          name={inputName}
+          id={inputId}
+          maxLength={maxLength}
+          value={this.props.inputValue}
+        />
+
+        <Suggestions
+          query={query}
+          suggestions={suggestions}
+          labelField={this.props.labelField}
+          selectedIndex={selectedIndex}
+          handleClick={this.handleSuggestionClick}
+          handleHover={this.handleSuggestionHover}
+          minQueryLength={this.props.minQueryLength}
+          shouldRenderSuggestions={this.props.shouldRenderSuggestions}
+          isFocused={this.state.isFocused}
+          classNames={this.state.classNames}
+          renderSuggestion={this.props.renderSuggestion}
+        />
+      </div>
+    ) : null;
+
     return (
       <div className={ClassNames(this.state.classNames.tags, 'react-tags-wrapper')}>
         <div className={this.state.classNames.selected}>
           {tagItems}
           {this.props.inline && showInputButton}
+          {tagInput}
         </div>
         {!this.props.inline && showInputButton}
+        {tagInput}
       </div>
     );
   }

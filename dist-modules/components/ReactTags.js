@@ -82,6 +82,7 @@ var ReactTags = function (_Component) {
       suggestions: suggestions,
       query: '',
       isFocused: false,
+      showInput: false,
       selectedIndex: -1,
       selectionMode: false,
       classNames: _extends({}, _constants.DEFAULT_CLASSNAMES, classNames)
@@ -313,12 +314,59 @@ var ReactTags = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
+      var _this4 = this;
+
       var tagItems = this.getTagItems();
 
       var showInputButton = !this.props.readOnly ? _react2.default.createElement(
         'button',
         { onClick: this.getInput },
         '+'
+      ) : null;
+
+      // get the suggestions for the given query
+      var query = state.query.trim(),
+          selectedIndex = this.state.selectedIndex,
+          suggestions = this.state.suggestions,
+          placeholder = this.props.placeholder,
+          inputName = this.props.name,
+          inputId = this.props.id,
+          maxLength = this.props.maxLength;
+
+      var tagInput = showInput ? _react2.default.createElement(
+        'div',
+        { className: this.state.classNames.tagInput },
+        _react2.default.createElement('input', {
+          ref: function ref(input) {
+            _this4.textInput = input;
+          },
+          className: this.state.classNames.tagInputField,
+          type: 'text',
+          placeholder: placeholder,
+          'aria-label': placeholder,
+          onFocus: this.handleFocus,
+          onBlur: this.handleBlur,
+          onChange: this.handleChange,
+          onKeyDown: this.handleKeyDown,
+          onPaste: this.handlePaste,
+          name: inputName,
+          id: inputId,
+          maxLength: maxLength,
+          value: this.props.inputValue
+        }),
+        _react2.default.createElement(_Suggestions2.default, {
+          query: query,
+          suggestions: suggestions,
+          labelField: this.props.labelField,
+          selectedIndex: selectedIndex,
+          handleClick: this.handleSuggestionClick,
+          handleHover: this.handleSuggestionHover,
+          minQueryLength: this.props.minQueryLength,
+          shouldRenderSuggestions: this.props.shouldRenderSuggestions,
+          isFocused: this.state.isFocused,
+          classNames: this.state.classNames,
+          renderSuggestion: this.props.renderSuggestion
+        })
       ) : null;
 
       return _react2.default.createElement(
@@ -328,9 +376,11 @@ var ReactTags = function (_Component) {
           'div',
           { className: this.state.classNames.selected },
           tagItems,
-          this.props.inline && showInputButton
+          this.props.inline && showInputButton,
+          tagInput
         ),
-        !this.props.inline && showInputButton
+        !this.props.inline && showInputButton,
+        tagInput
       );
     }
   }], [{
@@ -403,10 +453,10 @@ ReactTags.defaultProps = {
 };
 
 var _initialiseProps = function _initialiseProps() {
-  var _this4 = this;
+  var _this5 = this;
 
   this.addTag = function (tag) {
-    var _props2 = _this4.props,
+    var _props2 = _this5.props,
         tags = _props2.tags,
         labelField = _props2.labelField,
         allowUnique = _props2.allowUnique;
@@ -422,47 +472,47 @@ var _initialiseProps = function _initialiseProps() {
     if (allowUnique && existingKeys.indexOf(tag.id.toLowerCase()) >= 0) {
       return;
     }
-    if (_this4.props.autocomplete) {
-      var possibleMatches = _this4.filteredSuggestions(tag[labelField], _this4.props.suggestions);
+    if (_this5.props.autocomplete) {
+      var possibleMatches = _this5.filteredSuggestions(tag[labelField], _this5.props.suggestions);
 
-      if (_this4.props.autocomplete === 1 && possibleMatches.length === 1 || _this4.props.autocomplete === true && possibleMatches.length) {
+      if (_this5.props.autocomplete === 1 && possibleMatches.length === 1 || _this5.props.autocomplete === true && possibleMatches.length) {
         tag = possibleMatches[0];
       }
     }
 
     // call method to add
-    _this4.props.handleAddition(tag);
+    _this5.props.handleAddition(tag);
 
     // reset the state
-    _this4.setState({
+    _this5.setState({
       query: '',
       selectionMode: false,
       selectedIndex: -1
     });
 
-    _this4.resetAndFocusInput();
+    _this5.resetAndFocusInput();
   };
 
   this.getTagItems = function () {
-    var _props3 = _this4.props,
+    var _props3 = _this5.props,
         tags = _props3.tags,
         labelField = _props3.labelField,
         removeComponent = _props3.removeComponent,
         readOnly = _props3.readOnly,
         allowDragDrop = _props3.allowDragDrop;
-    var classNames = _this4.state.classNames;
+    var classNames = _this5.state.classNames;
 
-    var moveTag = allowDragDrop ? _this4.moveTag : null;
+    var moveTag = allowDragDrop ? _this5.moveTag : null;
     return tags.map(function (tag, index) {
       return _react2.default.createElement(_Tag2.default, {
         key: tag.id + '-' + index,
         index: index,
         tag: tag,
         labelField: labelField,
-        onDelete: _this4.handleDelete.bind(_this4, index),
+        onDelete: _this5.handleDelete.bind(_this5, index),
         moveTag: moveTag,
         removeComponent: removeComponent,
-        onTagClicked: _this4.handleTagClick.bind(_this4, index),
+        onTagClicked: _this5.handleTagClick.bind(_this5, index),
         readOnly: readOnly,
         classNames: classNames,
         allowDragDrop: allowDragDrop
@@ -471,56 +521,8 @@ var _initialiseProps = function _initialiseProps() {
   };
 
   this.getInput = function () {
-    var readOnly = _this4.props.readOnly;
-
-    if (!readOnly) {
-      // get the suggestions for the given query
-      var query = _this4.state.query.trim(),
-          selectedIndex = _this4.state.selectedIndex,
-          suggestions = _this4.state.suggestions,
-          placeholder = _this4.props.placeholder,
-          inputName = _this4.props.name,
-          inputId = _this4.props.id,
-          maxLength = _this4.props.maxLength;
-
-      console.log('getInput');
-
-      return _react2.default.createElement(
-        'div',
-        { className: _this4.state.classNames.tagInput },
-        _react2.default.createElement('input', {
-          ref: function ref(input) {
-            _this4.textInput = input;
-          },
-          className: _this4.state.classNames.tagInputField,
-          type: 'text',
-          placeholder: placeholder,
-          'aria-label': placeholder,
-          onFocus: _this4.handleFocus,
-          onBlur: _this4.handleBlur,
-          onChange: _this4.handleChange,
-          onKeyDown: _this4.handleKeyDown,
-          onPaste: _this4.handlePaste,
-          name: inputName,
-          id: inputId,
-          maxLength: maxLength,
-          value: _this4.props.inputValue
-        }),
-        _react2.default.createElement(_Suggestions2.default, {
-          query: query,
-          suggestions: suggestions,
-          labelField: _this4.props.labelField,
-          selectedIndex: selectedIndex,
-          handleClick: _this4.handleSuggestionClick,
-          handleHover: _this4.handleSuggestionHover,
-          minQueryLength: _this4.props.minQueryLength,
-          shouldRenderSuggestions: _this4.props.shouldRenderSuggestions,
-          isFocused: _this4.state.isFocused,
-          classNames: _this4.state.classNames,
-          renderSuggestion: _this4.props.renderSuggestion
-        })
-      );
-    }
+    console.log(showInput);
+    return _this5.setState({ showInput: true });
   };
 };
 
