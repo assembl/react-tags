@@ -456,7 +456,8 @@ class ReactTags extends Component {
       <div className={ClassNames(this.state.classNames.tags, 'react-tags-wrapper')}>
         <div className={this.state.classNames.selected}>
           {tagItems}
-          {this.state.showInput ? tagInput : showInputButton}
+          {this.state.showInput ? tagInput : null}
+          {showInputButton}
         </div>
       </div>
     );

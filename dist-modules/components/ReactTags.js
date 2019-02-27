@@ -381,7 +381,8 @@ var ReactTags = function (_Component) {
           'div',
           { className: this.state.classNames.selected },
           tagItems,
-          this.state.showInput ? tagInput : showInputButton
+          this.state.showInput ? tagInput : null,
+          showInputButton
         )
       );
     }
