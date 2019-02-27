@@ -326,7 +326,7 @@ var ReactTags = function (_Component) {
           inputId = this.props.id,
           maxLength = this.props.maxLength;
 
-      var tagInput = !this.props.readOnly ? _react2.default.createElement(
+      var tagInput = _react2.default.createElement(
         'div',
         { className: this.state.classNames.tagInput },
         _react2.default.createElement('input', {
@@ -360,6 +360,12 @@ var ReactTags = function (_Component) {
           classNames: this.state.classNames,
           renderSuggestion: this.props.renderSuggestion
         })
+      );
+
+      var showInputButton = !this.props.readOnly ? _react2.default.createElement(
+        Button,
+        { onclick: this.getInput },
+        '+'
       ) : null;
 
       return _react2.default.createElement(
@@ -369,9 +375,9 @@ var ReactTags = function (_Component) {
           'div',
           { className: this.state.classNames.selected },
           tagItems,
-          this.props.inline && tagInput
+          this.props.inline && showInputButton
         ),
-        !this.props.inline && tagInput
+        !this.props.inline && showInputButton
       );
     }
   }], [{
@@ -509,6 +515,14 @@ var _initialiseProps = function _initialiseProps() {
         allowDragDrop: allowDragDrop
       });
     });
+  };
+
+  this.getInput = function () {
+    var readOnly = _this5.props.readOnly;
+
+    if (!readOnly) {
+      return tagInput;
+    }
   };
 };
 

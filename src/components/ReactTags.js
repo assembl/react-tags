@@ -386,6 +386,15 @@ class ReactTags extends Component {
     });
   };
 
+  getInput = () => {
+    const {
+      readOnly
+    } = this.props;
+    if (!readOnly) {
+      return tagInput;
+    }
+  };
+
   render() {
     const tagItems = this.getTagItems();
 
@@ -398,7 +407,7 @@ class ReactTags extends Component {
       inputId = this.props.id,
       maxLength = this.props.maxLength;
 
-    const tagInput = !this.props.readOnly ? (
+    const tagInput =
       <div className={this.state.classNames.tagInput}>
         <input
           ref={(input) => {
@@ -433,15 +442,19 @@ class ReactTags extends Component {
           renderSuggestion={this.props.renderSuggestion}
         />
       </div>
-    ) : null;
+
+      const showInputButton = !this.props.readOnly ? (
+        <Button onclick={this.getInput}>+</Button>
+      ) :
+      null;
 
     return (
       <div className={ClassNames(this.state.classNames.tags, 'react-tags-wrapper')}>
         <div className={this.state.classNames.selected}>
           {tagItems}
-          {this.props.inline && tagInput}
+          {this.props.inline && showInputButton}
         </div>
-        {!this.props.inline && tagInput}
+        {!this.props.inline && showInputButton}
       </div>
     );
   }
