@@ -377,10 +377,10 @@ var ReactTags = function (_Component) {
           { className: this.state.classNames.selected },
           tagItems,
           this.props.inline && showInputButton,
-          tagInput
+          this.props.inline && this.state.showInput && tagInput
         ),
         !this.props.inline && showInputButton,
-        tagInput
+        !this.props.inline && this.state.showInput && tagInput
       );
     }
   }], [{

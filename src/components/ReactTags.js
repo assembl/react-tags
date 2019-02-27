@@ -451,10 +451,10 @@ class ReactTags extends Component {
         <div className={this.state.classNames.selected}>
           {tagItems}
           {this.props.inline && showInputButton}
-          {tagInput}
+          {this.props.inline && this.state.showInput && tagInput}
         </div>
         {!this.props.inline && showInputButton}
-        {tagInput}
+        {!this.props.inline && this.state.showInput && tagInput}
       </div>
     );
   }
