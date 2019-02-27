@@ -389,7 +389,7 @@ class ReactTags extends Component {
 
   getInput = () => {
     console.log(showInput);
-    return this.setState({showInput: true});
+    this.setState({showInput: true});
   };
 
   render() {
@@ -401,7 +401,7 @@ class ReactTags extends Component {
     null;
 
     // get the suggestions for the given query
-    const query = state.query.trim(),
+    const query = this.state.query.trim(),
     selectedIndex = this.state.selectedIndex,
     suggestions = this.state.suggestions,
     placeholder = this.props.placeholder,

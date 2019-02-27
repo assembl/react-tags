@@ -325,7 +325,7 @@ var ReactTags = function (_Component) {
       ) : null;
 
       // get the suggestions for the given query
-      var query = state.query.trim(),
+      var query = this.state.query.trim(),
           selectedIndex = this.state.selectedIndex,
           suggestions = this.state.suggestions,
           placeholder = this.props.placeholder,
@@ -522,7 +522,7 @@ var _initialiseProps = function _initialiseProps() {
 
   this.getInput = function () {
     console.log(showInput);
-    return _this5.setState({ showInput: true });
+    _this5.setState({ showInput: true });
   };
 };
 
