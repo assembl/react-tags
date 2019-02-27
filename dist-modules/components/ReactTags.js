@@ -521,7 +521,7 @@ var _initialiseProps = function _initialiseProps() {
   };
 
   this.getInput = function () {
-    console.log(showInput);
+    console.log(_this5.state.showInput);
     _this5.setState({ showInput: true });
   };
 };

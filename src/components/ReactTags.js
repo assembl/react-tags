@@ -388,7 +388,7 @@ class ReactTags extends Component {
   };
 
   getInput = () => {
-    console.log(showInput);
+    console.log(this.state.showInput);
     this.setState({showInput: true});
   };
 
