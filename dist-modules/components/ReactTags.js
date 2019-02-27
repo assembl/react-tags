@@ -376,11 +376,8 @@ var ReactTags = function (_Component) {
           'div',
           { className: this.state.classNames.selected },
           tagItems,
-          this.props.inline && !this.state.showInput && showInputButton,
-          this.props.inline && this.state.showInput && tagInput
-        ),
-        !this.props.inline && !this.state.showInput && showInputButton,
-        !this.props.inline && this.state.showInput && tagInput
+          this.state.showInput ? tagInput : showInputButton
+        )
       );
     }
   }], [{
@@ -521,7 +518,6 @@ var _initialiseProps = function _initialiseProps() {
   };
 
   this.getInput = function () {
-    console.log(_this5.state.showInput);
     _this5.setState({ showInput: true });
   };
 };

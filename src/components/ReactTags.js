@@ -388,7 +388,6 @@ class ReactTags extends Component {
   };
 
   getInput = () => {
-    console.log(this.state.showInput);
     this.setState({showInput: true});
   };
 
@@ -450,11 +449,8 @@ class ReactTags extends Component {
       <div className={ClassNames(this.state.classNames.tags, 'react-tags-wrapper')}>
         <div className={this.state.classNames.selected}>
           {tagItems}
-          {this.props.inline && !this.state.showInput && showInputButton}
-          {this.props.inline && this.state.showInput && tagInput}
+          {this.state.showInput ? tagInput : showInputButton}
         </div>
-        {!this.props.inline && !this.state.showInput && showInputButton}
-        {!this.props.inline && this.state.showInput && tagInput}
       </div>
     );
   }
