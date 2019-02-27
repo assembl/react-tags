@@ -444,7 +444,7 @@ class ReactTags extends Component {
       </div>
 
       const showInputButton = !this.props.readOnly ? (
-        <Button onclick={this.getInput}>+</Button>
+        <button onClick={this.getInput}>+</button>
       ) :
       null;
 
