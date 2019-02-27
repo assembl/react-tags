@@ -317,7 +317,7 @@ var ReactTags = function (_Component) {
 
       var showInputButton = !this.props.readOnly ? _react2.default.createElement(
         'button',
-        { onClick: this.getInput() },
+        { onClick: this.getInput },
         '+'
       ) : null;
 
