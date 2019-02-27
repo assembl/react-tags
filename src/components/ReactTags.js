@@ -391,15 +391,8 @@ class ReactTags extends Component {
       readOnly
     } = this.props;
     if (!readOnly) {
-      return tagInput;
-    }
-  };
-
-  render() {
-    const tagItems = this.getTagItems();
-
-    // get the suggestions for the given query
-    const query = this.state.query.trim(),
+      // get the suggestions for the given query
+      const query = this.state.query.trim(),
       selectedIndex = this.state.selectedIndex,
       suggestions = this.state.suggestions,
       placeholder = this.props.placeholder,
@@ -407,46 +400,54 @@ class ReactTags extends Component {
       inputId = this.props.id,
       maxLength = this.props.maxLength;
 
-    const tagInput =
-      <div className={this.state.classNames.tagInput}>
-        <input
-          ref={(input) => {
-            this.textInput = input;
-          }}
-          className={this.state.classNames.tagInputField}
-          type="text"
-          placeholder={placeholder}
-          aria-label={placeholder}
-          onFocus={this.handleFocus}
-          onBlur={this.handleBlur}
-          onChange={this.handleChange}
-          onKeyDown={this.handleKeyDown}
-          onPaste={this.handlePaste}
-          name={inputName}
-          id={inputId}
-          maxLength={maxLength}
-          value={this.props.inputValue}
-        />
+      console.log('getInput');
 
-        <Suggestions
-          query={query}
-          suggestions={suggestions}
-          labelField={this.props.labelField}
-          selectedIndex={selectedIndex}
-          handleClick={this.handleSuggestionClick}
-          handleHover={this.handleSuggestionHover}
-          minQueryLength={this.props.minQueryLength}
-          shouldRenderSuggestions={this.props.shouldRenderSuggestions}
-          isFocused={this.state.isFocused}
-          classNames={this.state.classNames}
-          renderSuggestion={this.props.renderSuggestion}
-        />
-      </div>
+      return (
+        <div className={this.state.classNames.tagInput}>
+          <input
+            ref={(input) => {
+              this.textInput = input;
+            }}
+            className={this.state.classNames.tagInputField}
+            type="text"
+            placeholder={placeholder}
+            aria-label={placeholder}
+            onFocus={this.handleFocus}
+            onBlur={this.handleBlur}
+            onChange={this.handleChange}
+            onKeyDown={this.handleKeyDown}
+            onPaste={this.handlePaste}
+            name={inputName}
+            id={inputId}
+            maxLength={maxLength}
+            value={this.props.inputValue}
+          />
 
-      const showInputButton = !this.props.readOnly ? (
-        <button onClick={this.getInput}>+</button>
-      ) :
-      null;
+          <Suggestions
+            query={query}
+            suggestions={suggestions}
+            labelField={this.props.labelField}
+            selectedIndex={selectedIndex}
+            handleClick={this.handleSuggestionClick}
+            handleHover={this.handleSuggestionHover}
+            minQueryLength={this.props.minQueryLength}
+            shouldRenderSuggestions={this.props.shouldRenderSuggestions}
+            isFocused={this.state.isFocused}
+            classNames={this.state.classNames}
+            renderSuggestion={this.props.renderSuggestion}
+          />
+        </div>
+      );
+    }
+  };
+
+  render() {
+    const tagItems = this.getTagItems();
+
+    const showInputButton = !this.props.readOnly ? (
+      <button onClick={this.getInput()}>+</button>
+    ) :
+    null;
 
     return (
       <div className={ClassNames(this.state.classNames.tags, 'react-tags-wrapper')}>
