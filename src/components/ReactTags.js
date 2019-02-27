@@ -380,7 +380,6 @@ class ReactTags extends Component {
           labelField={labelField}
           onDelete={this.handleDelete.bind(this, index)}
           moveTag={moveTag}
-          addComponent={addComponent}
           removeComponent={removeComponent}
           onTagClicked={this.handleTagClick.bind(this, index)}
           readOnly={readOnly}

@@ -514,7 +514,6 @@ var _initialiseProps = function _initialiseProps() {
         labelField: labelField,
         onDelete: _this5.handleDelete.bind(_this5, index),
         moveTag: moveTag,
-        addComponent: addComponent,
         removeComponent: removeComponent,
         onTagClicked: _this5.handleTagClick.bind(_this5, index),
         readOnly: readOnly,
