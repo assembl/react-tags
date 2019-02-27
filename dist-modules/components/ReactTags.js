@@ -333,7 +333,7 @@ var ReactTags = function (_Component) {
           inputId = this.props.id,
           maxLength = this.props.maxLength;
 
-      var tagInput = showInput ? _react2.default.createElement(
+      var tagInput = this.state.showInput ? _react2.default.createElement(
         'div',
         { className: this.state.classNames.tagInput },
         _react2.default.createElement('input', {

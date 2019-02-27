@@ -409,7 +409,7 @@ class ReactTags extends Component {
     inputId = this.props.id,
     maxLength = this.props.maxLength;
 
-    const tagInput = showInput ? (
+    const tagInput = this.state.showInput ? (
       <div className={this.state.classNames.tagInput}>
         <input
           ref={(input) => {
