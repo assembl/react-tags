@@ -199,7 +199,7 @@ var ReactTags = function (_Component) {
           this.textInput.value = '';
         }
       }
-      this.setState({ isFocused: false });
+      this.setState({ isFocused: false, showInput: false });
     }
   }, {
     key: 'handleKeyDown',
