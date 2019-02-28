@@ -347,6 +347,7 @@ var ReactTags = function (_Component) {
           },
           className: this.state.classNames.tagInputField,
           type: 'text',
+          autoFocus: true,
           placeholder: placeholder,
           'aria-label': placeholder,
           onFocus: this.handleFocus,
