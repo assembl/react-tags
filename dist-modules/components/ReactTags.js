@@ -473,7 +473,7 @@ var _initialiseProps = function _initialiseProps() {
 
     // Return if tag has been already added
     if (allowUnique && existingKeys.indexOf(tag.id.toLowerCase()) >= 0) {
-      _this5.setState({ suggestions: [{ id: 'Not Unique', text: 'Not Unique' }] });
+      return _this5.setState({ suggestions: [{ id: 'Not Unique', text: 'Not Unique' }] });
     }
     if (_this5.props.autocomplete) {
       var possibleMatches = _this5.filteredSuggestions(tag[labelField], _this5.props.suggestions);

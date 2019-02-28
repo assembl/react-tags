@@ -310,7 +310,7 @@ class ReactTags extends Component {
 
     // Return if tag has been already added
     if (allowUnique && existingKeys.indexOf(tag.id.toLowerCase()) >= 0) {
-      this.setState({suggestions: [{ id: 'Not Unique', text: 'Not Unique' }]});
+      return this.setState({suggestions: [{ id: 'Not Unique', text: 'Not Unique' }]});
     }
     if (this.props.autocomplete) {
       const possibleMatches = this.filteredSuggestions(
