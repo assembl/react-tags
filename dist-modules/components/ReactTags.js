@@ -436,6 +436,7 @@ ReactTags.propTypes = {
     className: _propTypes2.default.string
   })),
   allowUnique: _propTypes2.default.bool,
+  allowUniqueWarning: _propTypes2.default.string,
   renderSuggestion: _propTypes2.default.func
 };
 ReactTags.defaultProps = {
@@ -453,6 +454,7 @@ ReactTags.defaultProps = {
   autocomplete: false,
   readOnly: false,
   allowUnique: true,
+  allowUniqueWarning: 'Not unique',
   allowDragDrop: true,
   tags: []
 };
@@ -464,7 +466,8 @@ var _initialiseProps = function _initialiseProps() {
     var _props2 = _this5.props,
         tags = _props2.tags,
         labelField = _props2.labelField,
-        allowUnique = _props2.allowUnique;
+        allowUnique = _props2.allowUnique,
+        allowUniqueWarning = _props2.allowUniqueWarning;
 
     if (!tag.id || !tag[labelField]) {
       return;
@@ -475,7 +478,7 @@ var _initialiseProps = function _initialiseProps() {
 
     // Return if tag has been already added
     if (allowUnique && existingKeys.indexOf(tag.id.toLowerCase()) >= 0) {
-      return _this5.setState({ suggestions: [{ id: 'Not Unique', text: 'Not Unique' }] });
+      return _this5.setState({ suggestions: [{ id: 'Not Unique', text: allowUniqueWarning }] });
     }
     if (_this5.props.autocomplete) {
       var possibleMatches = _this5.filteredSuggestions(tag[labelField], _this5.props.suggestions);

@@ -70,6 +70,7 @@ class ReactTags extends Component {
       })
     ),
     allowUnique: PropTypes.bool,
+    allowUniqueWarning: PropTypes.string,
     renderSuggestion: PropTypes.func,
   };
 
@@ -88,6 +89,7 @@ class ReactTags extends Component {
     autocomplete: false,
     readOnly: false,
     allowUnique: true,
+    allowUniqueWarning: 'Not unique',
     allowDragDrop: true,
     tags: [],
   };
@@ -302,7 +304,7 @@ class ReactTags extends Component {
   }
 
   addTag = (tag) => {
-    const { tags, labelField, allowUnique } = this.props;
+    const { tags, labelField, allowUnique, allowUniqueWarning } = this.props;
     if (!tag.id || !tag[labelField]) {
       return;
     }
@@ -310,7 +312,7 @@ class ReactTags extends Component {
 
     // Return if tag has been already added
     if (allowUnique && existingKeys.indexOf(tag.id.toLowerCase()) >= 0) {
-      return this.setState({suggestions: [{ id: 'Not Unique', text: 'Not Unique' }]});
+      return this.setState({suggestions: [{ id: 'Not Unique', text: allowUniqueWarning }]});
     }
     if (this.props.autocomplete) {
       const possibleMatches = this.filteredSuggestions(
