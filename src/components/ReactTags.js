@@ -338,8 +338,6 @@ class ReactTags extends Component {
     });
 
     this.resetAndFocusInput();
-
-    console.log(this.state.showInput);
   };
 
   handleSuggestionClick(i) {
@@ -394,7 +392,7 @@ class ReactTags extends Component {
   };
 
   getInput = () => {
-    this.setState({showInput: true});
+    this.setState({showInput: true, isFocused: true});
   };
 
   render() {

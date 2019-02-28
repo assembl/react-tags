@@ -494,8 +494,6 @@ var _initialiseProps = function _initialiseProps() {
     });
 
     _this5.resetAndFocusInput();
-
-    console.log(_this5.state.showInput);
   };
 
   this.getTagItems = function () {
@@ -526,7 +524,7 @@ var _initialiseProps = function _initialiseProps() {
   };
 
   this.getInput = function () {
-    _this5.setState({ showInput: true });
+    _this5.setState({ showInput: true, isFocused: true });
   };
 };
 
