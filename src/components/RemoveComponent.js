@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 const crossStr = String.fromCharCode(215);
 const RemoveComponent = (props) => {
-  const { readOnly, removeComponent, onClick, className } = props;
-  if (readOnly) {
+  const { isAdmin, removeComponent, onClick, className } = props;
+  if (!isAdmin) {
     return null;
   }
 
@@ -23,7 +23,7 @@ const RemoveComponent = (props) => {
 RemoveComponent.propTypes = {
   className: PropTypes.string,
   onClick: PropTypes.func.isRequired,
-  readOnly: PropTypes.bool,
+  isAdmin: PropTypes.bool,
   removeComponent: PropTypes.func,
 };
 

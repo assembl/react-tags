@@ -57,7 +57,7 @@ class ReactTags extends Component {
     addComponent: PropTypes.func,
     removeComponent: PropTypes.func,
     autocomplete: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
-    readOnly: PropTypes.bool,
+    isAdmin: PropTypes.bool,
     classNames: PropTypes.object,
     name: PropTypes.string,
     id: PropTypes.string,
@@ -87,7 +87,7 @@ class ReactTags extends Component {
     allowAdditionFromPaste: true,
     resetInputOnDelete: true,
     autocomplete: false,
-    readOnly: false,
+    isAdmin: true,
     allowUnique: true,
     allowUniqueWarning: 'Not unique',
     allowDragDrop: true,
@@ -126,8 +126,8 @@ class ReactTags extends Component {
   }
 
   componentDidMount() {
-    const { autofocus, readOnly } = this.props;
-    if (autofocus && !readOnly) {
+    const { autofocus, isAdmin } = this.props;
+    if (autofocus && isAdmin) {
       this.resetAndFocusInput();
     }
   }
@@ -372,7 +372,7 @@ class ReactTags extends Component {
       tags,
       labelField,
       removeComponent,
-      readOnly,
+      isAdmin,
       allowDragDrop,
     } = this.props;
     const { classNames } = this.state;
@@ -388,7 +388,7 @@ class ReactTags extends Component {
           moveTag={moveTag}
           removeComponent={removeComponent}
           onTagClicked={this.handleTagClick.bind(this, index)}
-          readOnly={readOnly}
+          isAdmin={isAdmin}
           classNames={classNames}
           allowDragDrop={allowDragDrop}
         />
@@ -408,7 +408,7 @@ class ReactTags extends Component {
         className={'add-button'}
         addComponent={this.props.addComponent}
         onClick={this.getInput}
-        readOnly={this.props.readOnly}
+        isAdmin={this.props.isAdmin}
       />
     );
 
@@ -459,7 +459,7 @@ class ReactTags extends Component {
       </div>
     ) : null;
     return (
-      <div className={ClassNames(this.state.classNames.tags, {'react-tags-wrapper-user': this.props.readOnly, 'react-tags-wrapper-admin': !this.props.readOnly})}>
+      <div className={ClassNames(this.state.classNames.tags, {'react-tags-wrapper-user': !this.props.isAdmin, 'react-tags-wrapper-admin': this.props.isAdmin})}>
         <div className={this.state.classNames.selected}>
           {tagItems}
           {this.state.showInput ? tagInput : showInputButton}

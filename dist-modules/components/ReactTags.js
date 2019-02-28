@@ -110,9 +110,9 @@ var ReactTags = function (_Component) {
     value: function componentDidMount() {
       var _props = this.props,
           autofocus = _props.autofocus,
-          readOnly = _props.readOnly;
+          isAdmin = _props.isAdmin;
 
-      if (autofocus && !readOnly) {
+      if (autofocus && isAdmin) {
         this.resetAndFocusInput();
       }
     }
@@ -329,7 +329,7 @@ var ReactTags = function (_Component) {
         className: 'add-button',
         addComponent: this.props.addComponent,
         onClick: this.getInput,
-        readOnly: this.props.readOnly
+        isAdmin: this.props.isAdmin
       });
 
       // get the suggestions for the given query
@@ -379,7 +379,7 @@ var ReactTags = function (_Component) {
       ) : null;
       return _react2.default.createElement(
         'div',
-        { className: (0, _classnames2.default)(this.state.classNames.tags, { 'react-tags-wrapper-user': this.props.readOnly, 'react-tags-wrapper-admin': !this.props.readOnly }) },
+        { className: (0, _classnames2.default)(this.state.classNames.tags, { 'react-tags-wrapper-user': !this.props.isAdmin, 'react-tags-wrapper-admin': this.props.isAdmin }) },
         _react2.default.createElement(
           'div',
           { className: this.state.classNames.selected },
@@ -426,7 +426,7 @@ ReactTags.propTypes = {
   addComponent: _propTypes2.default.func,
   removeComponent: _propTypes2.default.func,
   autocomplete: _propTypes2.default.oneOfType([_propTypes2.default.bool, _propTypes2.default.number]),
-  readOnly: _propTypes2.default.bool,
+  isAdmin: _propTypes2.default.bool,
   classNames: _propTypes2.default.object,
   name: _propTypes2.default.string,
   id: _propTypes2.default.string,
@@ -453,7 +453,7 @@ ReactTags.defaultProps = {
   allowAdditionFromPaste: true,
   resetInputOnDelete: true,
   autocomplete: false,
-  readOnly: false,
+  isAdmin: true,
   allowUnique: true,
   allowUniqueWarning: 'Not unique',
   allowDragDrop: true,
@@ -508,7 +508,7 @@ var _initialiseProps = function _initialiseProps() {
         tags = _props3.tags,
         labelField = _props3.labelField,
         removeComponent = _props3.removeComponent,
-        readOnly = _props3.readOnly,
+        isAdmin = _props3.isAdmin,
         allowDragDrop = _props3.allowDragDrop;
     var classNames = _this5.state.classNames;
 
@@ -523,7 +523,7 @@ var _initialiseProps = function _initialiseProps() {
         moveTag: moveTag,
         removeComponent: removeComponent,
         onTagClicked: _this5.handleTagClick.bind(_this5, index),
-        readOnly: readOnly,
+        isAdmin: isAdmin,
         classNames: classNames,
         allowDragDrop: allowDragDrop
       });

@@ -23,7 +23,7 @@ class Tag extends Component {
       connectDragSource,
       isDragging,
       connectDropTarget,
-      readOnly,
+      isAdmin,
       tag,
       classNames,
     } = props;
@@ -40,7 +40,7 @@ class Tag extends Component {
         className={classNames.remove}
         removeComponent={props.removeComponent}
         onClick={props.onDelete}
-        readOnly={readOnly}
+        isAdmin={isAdmin}
       />
     </span>
     );
@@ -59,7 +59,7 @@ Tag.propTypes = {
   removeComponent: PropTypes.func,
   onTagClicked: PropTypes.func,
   classNames: PropTypes.object,
-  readOnly: PropTypes.bool,
+  isAdmin: PropTypes.bool,
   connectDragSource: PropTypes.func.isRequired,
   isDragging: PropTypes.bool.isRequired,
   connectDropTarget: PropTypes.func.isRequired,
@@ -67,7 +67,7 @@ Tag.propTypes = {
 
 Tag.defaultProps = {
   labelField: 'text',
-  readOnly: false,
+  isAdmin: true,
 };
 
 export default flow(

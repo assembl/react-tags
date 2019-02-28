@@ -33,25 +33,25 @@ function buildRegExpFromDelimiters(delimiters) {
  * Returns true when the tag is drag enabled
  * @param {object} params props of the tag element
  * @returns {boolean} true/false
- * The three different properties which controls this function are moveTag, readOnly and allowDragDrop.
+ * The three different properties which controls this function are moveTag, isAdmin and allowDragDrop.
  */
 function canDrag(params) {
   var moveTag = params.moveTag,
-      readOnly = params.readOnly,
+      isAdmin = params.isAdmin,
       allowDragDrop = params.allowDragDrop;
 
-  return moveTag !== undefined && !readOnly && allowDragDrop;
+  return moveTag !== undefined && isAdmin && allowDragDrop;
 }
 
 /**
  * Returns true when the tag is drop enabled
  * @param {object} params props of the tag element
  * @returns {boolean} true/false
- * The two different properties which controls this function are readOnly and allowDragDrop.
+ * The two different properties which controls this function are isAdmin and allowDragDrop.
  */
 function canDrop(params) {
-  var readOnly = params.readOnly,
+  var isAdmin = params.isAdmin,
       allowDragDrop = params.allowDragDrop;
 
-  return !readOnly && allowDragDrop;
+  return isAdmin && allowDragDrop;
 }

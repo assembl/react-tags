@@ -60,7 +60,7 @@ var Tag = function (_Component) {
       var connectDragSource = props.connectDragSource,
           isDragging = props.isDragging,
           connectDropTarget = props.connectDropTarget,
-          readOnly = props.readOnly,
+          isAdmin = props.isAdmin,
           tag = props.tag,
           classNames = props.classNames;
       var _tag$className = tag.className,
@@ -84,7 +84,7 @@ var Tag = function (_Component) {
           className: classNames.remove,
           removeComponent: props.removeComponent,
           onClick: props.onDelete,
-          readOnly: readOnly
+          isAdmin: isAdmin
         })
       );
       return connectDragSource(connectDropTarget(tagComponent));
@@ -105,7 +105,7 @@ Tag.propTypes = {
   removeComponent: _propTypes2.default.func,
   onTagClicked: _propTypes2.default.func,
   classNames: _propTypes2.default.object,
-  readOnly: _propTypes2.default.bool,
+  isAdmin: _propTypes2.default.bool,
   connectDragSource: _propTypes2.default.func.isRequired,
   isDragging: _propTypes2.default.bool.isRequired,
   connectDropTarget: _propTypes2.default.func.isRequired
@@ -113,7 +113,7 @@ Tag.propTypes = {
 
 Tag.defaultProps = {
   labelField: 'text',
-  readOnly: false
+  isAdmin: true
 };
 
 exports.default = (0, _flow2.default)((0, _reactDnd.DragSource)(ItemTypes.TAG, _DragAndDropHelper.tagSource, _DragAndDropHelper.dragSource), (0, _reactDnd.DropTarget)(ItemTypes.TAG, _DragAndDropHelper.tagTarget, _DragAndDropHelper.dropCollect))(Tag);

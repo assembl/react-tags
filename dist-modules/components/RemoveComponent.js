@@ -16,12 +16,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var crossStr = String.fromCharCode(215);
 var RemoveComponent = function RemoveComponent(props) {
-  var readOnly = props.readOnly,
+  var isAdmin = props.isAdmin,
       removeComponent = props.removeComponent,
       onClick = props.onClick,
       className = props.className;
 
-  if (readOnly) {
+  if (!isAdmin) {
     return null;
   }
 
@@ -40,7 +40,7 @@ var RemoveComponent = function RemoveComponent(props) {
 RemoveComponent.propTypes = {
   className: _propTypes2.default.string,
   onClick: _propTypes2.default.func.isRequired,
-  readOnly: _propTypes2.default.bool,
+  isAdmin: _propTypes2.default.bool,
   removeComponent: _propTypes2.default.func
 };
 

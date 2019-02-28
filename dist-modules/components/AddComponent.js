@@ -17,12 +17,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var plusStr = String.fromCharCode(43);
 
 var AddComponent = function AddComponent(props) {
-  var readOnly = props.readOnly,
+  var isAdmin = props.isAdmin,
       addComponent = props.addComponent,
       onClick = props.onClick,
       className = props.className;
 
-  if (readOnly) {
+  if (!isAdmin) {
     return null;
   }
 
@@ -41,7 +41,7 @@ var AddComponent = function AddComponent(props) {
 AddComponent.propTypes = {
   className: _propTypes2.default.string,
   onClick: _propTypes2.default.func.isRequired,
-  readOnly: _propTypes2.default.bool,
+  isAdmin: _propTypes2.default.bool,
   addComponent: _propTypes2.default.func
 };
 

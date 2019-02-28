@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 const plusStr = String.fromCharCode(43);
 
 const AddComponent = (props) => {
-  const { readOnly, addComponent, onClick, className } = props;
-  if (readOnly) {
+  const { isAdmin, addComponent, onClick, className } = props;
+  if (!isAdmin) {
     return null;
   }
 
@@ -24,7 +24,7 @@ const AddComponent = (props) => {
 AddComponent.propTypes = {
   className: PropTypes.string,
   onClick: PropTypes.func.isRequired,
-  readOnly: PropTypes.bool,
+  isAdmin: PropTypes.bool,
   addComponent: PropTypes.func,
 };
 
