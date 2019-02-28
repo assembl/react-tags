@@ -341,7 +341,9 @@ class ReactTags extends Component {
   };
 
   handleSuggestionClick(i) {
-    this.addTag(this.state.suggestions[i]);
+    if (this.state.suggestions[i].id !== 'Not Unique') {
+      this.addTag(this.state.suggestions[i]);
+    }
   }
 
   handleSuggestionHover(i) {

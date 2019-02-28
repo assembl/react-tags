@@ -293,7 +293,9 @@ var ReactTags = function (_Component) {
   }, {
     key: 'handleSuggestionClick',
     value: function handleSuggestionClick(i) {
-      this.addTag(this.state.suggestions[i]);
+      if (this.state.suggestions[i].id !== 'Not Unique') {
+        this.addTag(this.state.suggestions[i]);
+      }
     }
   }, {
     key: 'handleSuggestionHover',
