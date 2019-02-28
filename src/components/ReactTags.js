@@ -310,7 +310,7 @@ class ReactTags extends Component {
 
     // Return if tag has been already added
     if (allowUnique && existingKeys.indexOf(tag.id.toLowerCase()) >= 0) {
-      return this.setState({suggestions: ['Already added']});
+      console.log('Not unique');
     }
     if (this.props.autocomplete) {
       const possibleMatches = this.filteredSuggestions(
@@ -324,6 +324,8 @@ class ReactTags extends Component {
       ) {
         tag = possibleMatches[0];
       }
+
+      console.log(this.props.suggestions);
     }
 
     // call method to add

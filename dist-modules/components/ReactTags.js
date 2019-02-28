@@ -473,7 +473,7 @@ var _initialiseProps = function _initialiseProps() {
 
     // Return if tag has been already added
     if (allowUnique && existingKeys.indexOf(tag.id.toLowerCase()) >= 0) {
-      return _this5.setState({ suggestions: ['Already added'] });
+      console.log('Not unique');
     }
     if (_this5.props.autocomplete) {
       var possibleMatches = _this5.filteredSuggestions(tag[labelField], _this5.props.suggestions);
@@ -481,6 +481,8 @@ var _initialiseProps = function _initialiseProps() {
       if (_this5.props.autocomplete === 1 && possibleMatches.length === 1 || _this5.props.autocomplete === true && possibleMatches.length) {
         tag = possibleMatches[0];
       }
+
+      console.log(_this5.props.suggestions);
     }
 
     // call method to add
