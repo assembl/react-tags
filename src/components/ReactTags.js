@@ -243,6 +243,7 @@ class ReactTags extends Component {
 
       if (selectedQuery !== '') {
         this.addTag(selectedQuery);
+        this.setState({showInput: true});
       }
     }
 

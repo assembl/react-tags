@@ -234,6 +234,7 @@ var ReactTags = function (_Component) {
 
         if (selectedQuery !== '') {
           this.addTag(selectedQuery);
+          this.setState({ showInput: true });
         }
       }
 
