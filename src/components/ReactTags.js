@@ -454,7 +454,7 @@ class ReactTags extends Component {
       </div>
     ) : null;
     return (
-      <div className={ClassNames(this.state.classNames.tags, 'react-tags-wrapper')}>
+      <div className={ClassNames(this.state.classNames.tags, {'react-tags-wrapper-user': this.props.readOnly, 'react-tags-wrapper-admin': !this.props.readOnly})}>
         <div className={this.state.classNames.selected}>
           {tagItems}
           {this.state.showInput ? tagInput : showInputButton}

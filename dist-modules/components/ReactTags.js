@@ -376,7 +376,7 @@ var ReactTags = function (_Component) {
       ) : null;
       return _react2.default.createElement(
         'div',
-        { className: (0, _classnames2.default)(this.state.classNames.tags, 'react-tags-wrapper') },
+        { className: (0, _classnames2.default)(this.state.classNames.tags, { 'react-tags-wrapper-user': this.props.readOnly, 'react-tags-wrapper-admin': !this.props.readOnly }) },
         _react2.default.createElement(
           'div',
           { className: this.state.classNames.selected },
