@@ -5,7 +5,7 @@ const crossStr = String.fromCharCode(215);
 const RemoveComponent = (props) => {
   const { readOnly, removeComponent, onClick, className } = props;
   if (readOnly) {
-    return <span />;
+    return null;
   }
 
   if (removeComponent) {

@@ -22,7 +22,7 @@ var RemoveComponent = function RemoveComponent(props) {
       className = props.className;
 
   if (readOnly) {
-    return _react2.default.createElement('span', null);
+    return null;
   }
 
   if (removeComponent) {
