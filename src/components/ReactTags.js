@@ -129,7 +129,6 @@ class ReactTags extends Component {
     const { isAdmin } = this.props;
     if (isAdmin) {
       this.resetInput();
-      this.handleBlur(e);
     }
   }
 

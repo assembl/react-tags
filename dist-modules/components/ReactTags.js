@@ -112,7 +112,6 @@ var ReactTags = function (_Component) {
 
       if (isAdmin) {
         this.resetInput();
-        this.handleBlur(e);
       }
     }
   }, {
