@@ -126,7 +126,7 @@ class ReactTags extends Component {
   componentDidMount() {
     const { isAdmin } = this.props;
     if (isAdmin) {
-      this.resetInput();
+      this.resetAndBlurInput();
     }
   }
 
@@ -148,6 +148,13 @@ class ReactTags extends Component {
     this.setState({ query: '' });
     if (this.textInput) {
       this.textInput.value = '';
+    }
+  }
+
+  resetAndBlurInput() {
+    this.setState({ query: '' });
+    if (this.textInput) {
+      this.textInput.value = '';
       this.textInput.blur();
     }
   }
@@ -165,7 +172,7 @@ class ReactTags extends Component {
     if (!this.props.resetInputOnDelete) {
       this.textInput && this.textInput.focus();
     } else {
-      this.resetInput();
+      this.resetAndBlurInput();
     }
     e.stopPropagation();
   }
@@ -239,6 +246,7 @@ class ReactTags extends Component {
 
       if (selectedQuery !== '') {
         this.addTag(selectedQuery);
+        this.resetAndFocusInput();
         this.setState({ isFocused: true });
       }
     }
@@ -249,7 +257,7 @@ class ReactTags extends Component {
       query === '' &&
       this.props.allowDeleteFromEmptyInput
     ) {
-      this.resetInput();
+      this.resetAndBlurInput();
     }
 
     // up arrow
@@ -342,7 +350,7 @@ class ReactTags extends Component {
   handleSuggestionClick(i) {
     if (this.state.suggestions[i].id !== 'Not Unique') {
       this.addTag(this.state.suggestions[i]);
-      this.handleBlur(i);
+      this.resetAndBlurInput();
       this.setState({ isFocused: false });
     }
   }

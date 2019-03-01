@@ -110,7 +110,7 @@ var ReactTags = function (_Component) {
       var isAdmin = this.props.isAdmin;
 
       if (isAdmin) {
-        this.resetInput();
+        this.resetAndBlurInput();
       }
     }
   }, {
@@ -129,6 +129,14 @@ var ReactTags = function (_Component) {
   }, {
     key: 'resetInput',
     value: function resetInput() {
+      this.setState({ query: '' });
+      if (this.textInput) {
+        this.textInput.value = '';
+      }
+    }
+  }, {
+    key: 'resetAndBlurInput',
+    value: function resetAndBlurInput() {
       this.setState({ query: '' });
       if (this.textInput) {
         this.textInput.value = '';
@@ -151,7 +159,7 @@ var ReactTags = function (_Component) {
       if (!this.props.resetInputOnDelete) {
         this.textInput && this.textInput.focus();
       } else {
-        this.resetInput();
+        this.resetAndBlurInput();
       }
       e.stopPropagation();
     }
@@ -229,13 +237,14 @@ var ReactTags = function (_Component) {
 
         if (selectedQuery !== '') {
           this.addTag(selectedQuery);
+          this.resetAndFocusInput();
           this.setState({ isFocused: true });
         }
       }
 
       // when backspace key is pressed and query is blank, delete tag
       if (e.keyCode === _constants.KEYS.BACKSPACE && query === '' && this.props.allowDeleteFromEmptyInput) {
-        this.resetInput();
+        this.resetAndBlurInput();
       }
 
       // up arrow
@@ -291,7 +300,7 @@ var ReactTags = function (_Component) {
     value: function handleSuggestionClick(i) {
       if (this.state.suggestions[i].id !== 'Not Unique') {
         this.addTag(this.state.suggestions[i]);
-        this.handleBlur(i);
+        this.resetAndBlurInput();
         this.setState({ isFocused: false });
       }
     }
