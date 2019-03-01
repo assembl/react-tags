@@ -151,7 +151,7 @@ var ReactTags = function (_Component) {
       if (!this.props.resetInputOnDelete) {
         this.textInput && this.textInput.focus();
       } else {
-        this.resetAndFocusInput();
+        this.resetInput();
       }
       e.stopPropagation();
     }
