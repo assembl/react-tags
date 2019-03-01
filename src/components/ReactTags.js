@@ -227,7 +227,6 @@ class ReactTags extends Component {
     // If no text is typed in so far, ignore the action - so we don't end up with a terminating
     // character typed in.
     if (this.props.delimiters.indexOf(e.keyCode) !== -1 && !e.shiftKey) {
-      this.handleFocus(e);
       if (e.keyCode !== KEYS.TAB || query !== '') {
         e.preventDefault();
       }
@@ -239,6 +238,7 @@ class ReactTags extends Component {
 
       if (selectedQuery !== '') {
         this.addTag(selectedQuery);
+        this.setState({ isFocused: true });
       }
     }
 
@@ -341,6 +341,7 @@ class ReactTags extends Component {
   handleSuggestionClick(i) {
     if (this.state.suggestions[i].id !== 'Not Unique') {
       this.addTag(this.state.suggestions[i]);
+      this.setState({ isFocused: false });
     }
   }
 
