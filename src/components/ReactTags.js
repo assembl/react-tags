@@ -227,6 +227,7 @@ class ReactTags extends Component {
     // If no text is typed in so far, ignore the action - so we don't end up with a terminating
     // character typed in.
     if (this.props.delimiters.indexOf(e.keyCode) !== -1 && !e.shiftKey) {
+      this.handleFocus(e);
       if (e.keyCode !== KEYS.TAB || query !== '') {
         e.preventDefault();
       }
@@ -326,14 +327,15 @@ class ReactTags extends Component {
     // call method to add
     this.props.handleAddition(tag);
 
+    this.resetInput();
+
     // reset the state
     this.setState({
       query: '',
+      isFocused: false,
       selectionMode: false,
       selectedIndex: -1
     });
-
-    this.resetInput();
   };
 
   handleSuggestionClick(i) {

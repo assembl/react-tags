@@ -220,6 +220,7 @@ var ReactTags = function (_Component) {
       // If no text is typed in so far, ignore the action - so we don't end up with a terminating
       // character typed in.
       if (this.props.delimiters.indexOf(e.keyCode) !== -1 && !e.shiftKey) {
+        this.handleFocus(e);
         if (e.keyCode !== _constants.KEYS.TAB || query !== '') {
           e.preventDefault();
         }
@@ -484,14 +485,15 @@ var _initialiseProps = function _initialiseProps() {
     // call method to add
     _this5.props.handleAddition(tag);
 
+    _this5.resetInput();
+
     // reset the state
     _this5.setState({
       query: '',
+      isFocused: false,
       selectionMode: false,
       selectedIndex: -1
     });
-
-    _this5.resetInput();
   };
 
   this.getTagItems = function () {
