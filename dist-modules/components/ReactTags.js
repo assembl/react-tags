@@ -86,7 +86,6 @@ var ReactTags = function (_Component) {
       suggestions: suggestions,
       query: '',
       isFocused: false,
-      showInput: false,
       selectedIndex: -1,
       selectionMode: false,
       classNames: _extends({}, _constants.DEFAULT_CLASSNAMES, classNames)
@@ -156,18 +155,6 @@ var ReactTags = function (_Component) {
       }
       e.stopPropagation();
     }
-
-    // handleTagClick(i, e) {
-    //   if (this.props.handleTagClick) {
-    //     this.props.handleTagClick(i, e);
-    //   }
-    //   if (!this.props.resetInputOnDelete) {
-    //     this.textInput && this.textInput.focus();
-    //   } else {
-    //     this.resetAndFocusInput();
-    //   }
-    // }
-
   }, {
     key: 'handleChange',
     value: function handleChange(e) {
@@ -206,7 +193,7 @@ var ReactTags = function (_Component) {
       if (this.textInput) {
         this.textInput.value = '';
       }
-      this.setState({ isFocused: false, showInput: false, query: '' });
+      this.setState({ isFocused: false, query: '' });
     }
   }, {
     key: 'handleKeyDown',
@@ -241,7 +228,6 @@ var ReactTags = function (_Component) {
 
         if (selectedQuery !== '') {
           this.addTag(selectedQuery);
-          this.setState({ showInput: true });
         }
       }
 
@@ -327,12 +313,6 @@ var ReactTags = function (_Component) {
     }
   }, {
     key: 'render',
-
-
-    // getInput = () => {
-    //   this.setState({showInput: true, isFocused: true});
-    // };
-
     value: function render() {
       var _this4 = this;
 
@@ -426,7 +406,6 @@ ReactTags.propTypes = {
   handleAddition: _propTypes2.default.func,
   handleDrag: _propTypes2.default.func,
   handleFilterSuggestions: _propTypes2.default.func,
-  //handleTagClick: PropTypes.func,
   allowDeleteFromEmptyInput: _propTypes2.default.bool,
   allowAdditionFromPaste: _propTypes2.default.bool,
   allowDragDrop: _propTypes2.default.bool,
@@ -509,8 +488,7 @@ var _initialiseProps = function _initialiseProps() {
     _this5.setState({
       query: '',
       selectionMode: false,
-      selectedIndex: -1,
-      showInput: false
+      selectedIndex: -1
     });
 
     _this5.resetAndFocusInput();
@@ -534,9 +512,8 @@ var _initialiseProps = function _initialiseProps() {
         labelField: labelField,
         onDelete: _this5.handleDelete.bind(_this5, index),
         moveTag: moveTag,
-        removeComponent: removeComponent
-        //onTagClicked={this.handleTagClick.bind(this, index)}
-        , isAdmin: isAdmin,
+        removeComponent: removeComponent,
+        isAdmin: isAdmin,
         classNames: classNames,
         allowDragDrop: allowDragDrop
       });

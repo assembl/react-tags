@@ -44,7 +44,6 @@ class ReactTags extends Component {
     handleAddition: PropTypes.func,
     handleDrag: PropTypes.func,
     handleFilterSuggestions: PropTypes.func,
-    //handleTagClick: PropTypes.func,
     allowDeleteFromEmptyInput: PropTypes.bool,
     allowAdditionFromPaste: PropTypes.bool,
     allowDragDrop: PropTypes.bool,
@@ -101,7 +100,6 @@ class ReactTags extends Component {
       suggestions,
       query: '',
       isFocused: false,
-      showInput: false,
       selectedIndex: -1,
       selectionMode: false,
       classNames: { ...DEFAULT_CLASSNAMES, ...classNames },
@@ -172,17 +170,6 @@ class ReactTags extends Component {
     e.stopPropagation();
   }
 
-  // handleTagClick(i, e) {
-  //   if (this.props.handleTagClick) {
-  //     this.props.handleTagClick(i, e);
-  //   }
-  //   if (!this.props.resetInputOnDelete) {
-  //     this.textInput && this.textInput.focus();
-  //   } else {
-  //     this.resetAndFocusInput();
-  //   }
-  // }
-
   handleChange(e) {
     if (this.props.handleInputChange) {
       this.props.handleInputChange(e.target.value);
@@ -219,7 +206,7 @@ class ReactTags extends Component {
     if (this.textInput) {
       this.textInput.value = '';
     }
-    this.setState({ isFocused: false, showInput: false, query: '' });
+    this.setState({ isFocused: false, query: '' });
   }
 
   handleKeyDown(e) {
@@ -251,7 +238,6 @@ class ReactTags extends Component {
 
       if (selectedQuery !== '') {
         this.addTag(selectedQuery);
-        this.setState({showInput: true});
       }
     }
 
@@ -344,8 +330,7 @@ class ReactTags extends Component {
     this.setState({
       query: '',
       selectionMode: false,
-      selectedIndex: -1,
-      showInput: false,
+      selectedIndex: -1
     });
 
     this.resetAndFocusInput();
@@ -395,7 +380,6 @@ class ReactTags extends Component {
           onDelete={this.handleDelete.bind(this, index)}
           moveTag={moveTag}
           removeComponent={removeComponent}
-          //onTagClicked={this.handleTagClick.bind(this, index)}
           isAdmin={isAdmin}
           classNames={classNames}
           allowDragDrop={allowDragDrop}
@@ -403,10 +387,6 @@ class ReactTags extends Component {
       );
     });
   };
-
-  // getInput = () => {
-  //   this.setState({showInput: true, isFocused: true});
-  // };
 
   render() {
     const tagItems = this.getTagItems();

@@ -31,7 +31,6 @@ class Tag extends Component {
     const tagComponent = ( <button
       className={ClassNames('tag-wrapper', classNames.tag, className)}
       style={{opacity: isDragging ? 0 : 1, 'cursor': canDrag(props) ? 'move' : 'auto'}}
-      //onClick={props.onTagClicked}
       onClick={props.onDelete}
       onKeyDown={props.onTagClicked}
       onTouchStart={props.onTagClicked}>
@@ -40,7 +39,6 @@ class Tag extends Component {
         tag={props.tag}
         className={classNames.remove}
         removeComponent={props.removeComponent}
-        //onClick={props.onDelete}
         isAdmin={isAdmin}
       />
     </button>
