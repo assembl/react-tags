@@ -112,6 +112,7 @@ var ReactTags = function (_Component) {
 
       if (isAdmin) {
         this.resetInput();
+        this.handleBlur(e);
       }
     }
   }, {
@@ -133,6 +134,7 @@ var ReactTags = function (_Component) {
       this.setState({ query: '' });
       if (this.textInput) {
         this.textInput.value = '';
+        this.textInput.blur();
       }
     }
   }, {
@@ -201,9 +203,9 @@ var ReactTags = function (_Component) {
       var value = e.target.value;
       if (this.props.handleInputBlur) {
         this.props.handleInputBlur(value);
-        if (this.textInput) {
-          this.textInput.value = '';
-        }
+      }
+      if (this.textInput) {
+        this.textInput.value = '';
       }
       this.setState({ isFocused: false, showInput: false, query: '' });
     }

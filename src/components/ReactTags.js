@@ -129,6 +129,7 @@ class ReactTags extends Component {
     const { isAdmin } = this.props;
     if (isAdmin) {
       this.resetInput();
+      this.handleBlur(e);
     }
   }
 
@@ -150,6 +151,7 @@ class ReactTags extends Component {
     this.setState({ query: '' });
     if (this.textInput) {
       this.textInput.value = '';
+      this.textInput.blur();
     }
   }
 
@@ -214,9 +216,9 @@ class ReactTags extends Component {
     const value = e.target.value;
     if (this.props.handleInputBlur) {
       this.props.handleInputBlur(value);
-      if (this.textInput) {
-        this.textInput.value = '';
-      }
+    }
+    if (this.textInput) {
+      this.textInput.value = '';
     }
     this.setState({ isFocused: false, showInput: false, query: '' });
   }
