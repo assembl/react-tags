@@ -108,12 +108,10 @@ var ReactTags = function (_Component) {
   _createClass(ReactTags, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      var _props = this.props,
-          autofocus = _props.autofocus,
-          isAdmin = _props.isAdmin;
+      var isAdmin = this.props.isAdmin;
 
-      if (autofocus && isAdmin) {
-        this.resetAndFocusInput();
+      if (isAdmin) {
+        this.resetInput();
       }
     }
   }, {
@@ -128,6 +126,14 @@ var ReactTags = function (_Component) {
       return suggestions.filter(function (item) {
         return item[_this2.props.labelField].toLowerCase().indexOf(query.toLowerCase()) === 0;
       });
+    }
+  }, {
+    key: 'resetInput',
+    value: function resetInput() {
+      this.setState({ query: '' });
+      if (this.textInput) {
+        this.textInput.value = '';
+      }
     }
   }, {
     key: 'resetAndFocusInput',
@@ -199,7 +205,7 @@ var ReactTags = function (_Component) {
           this.textInput.value = '';
         }
       }
-      this.setState({ isFocused: false, showInput: false });
+      this.setState({ isFocused: false, showInput: false, query: '' });
     }
   }, {
     key: 'handleKeyDown',
@@ -470,11 +476,11 @@ var _initialiseProps = function _initialiseProps() {
   var _this5 = this;
 
   this.addTag = function (tag) {
-    var _props2 = _this5.props,
-        tags = _props2.tags,
-        labelField = _props2.labelField,
-        allowUnique = _props2.allowUnique,
-        allowUniqueWarning = _props2.allowUniqueWarning;
+    var _props = _this5.props,
+        tags = _props.tags,
+        labelField = _props.labelField,
+        allowUnique = _props.allowUnique,
+        allowUniqueWarning = _props.allowUniqueWarning;
 
     if (!tag.id || !tag[labelField]) {
       return;
@@ -510,12 +516,12 @@ var _initialiseProps = function _initialiseProps() {
   };
 
   this.getTagItems = function () {
-    var _props3 = _this5.props,
-        tags = _props3.tags,
-        labelField = _props3.labelField,
-        removeComponent = _props3.removeComponent,
-        isAdmin = _props3.isAdmin,
-        allowDragDrop = _props3.allowDragDrop;
+    var _props2 = _this5.props,
+        tags = _props2.tags,
+        labelField = _props2.labelField,
+        removeComponent = _props2.removeComponent,
+        isAdmin = _props2.isAdmin,
+        allowDragDrop = _props2.allowDragDrop;
     var classNames = _this5.state.classNames;
 
     var moveTag = allowDragDrop ? _this5.moveTag : null;

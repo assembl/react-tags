@@ -126,9 +126,9 @@ class ReactTags extends Component {
   }
 
   componentDidMount() {
-    const { autofocus, isAdmin } = this.props;
-    if (autofocus && isAdmin) {
-      this.resetAndFocusInput();
+    const { isAdmin } = this.props;
+    if (isAdmin) {
+      this.resetInput();
     }
   }
 
@@ -144,6 +144,13 @@ class ReactTags extends Component {
           .indexOf(query.toLowerCase()) === 0
       );
     });
+  }
+
+  resetInput() {
+    this.setState({ query: '' });
+    if (this.textInput) {
+      this.textInput.value = '';
+    }
   }
 
   resetAndFocusInput() {
@@ -211,7 +218,7 @@ class ReactTags extends Component {
         this.textInput.value = '';
       }
     }
-    this.setState({ isFocused: false, showInput: false });
+    this.setState({ isFocused: false, showInput: false, query: '' });
   }
 
   handleKeyDown(e) {
