@@ -192,6 +192,7 @@ var ReactTags = function (_Component) {
       }
       if (this.textInput) {
         this.textInput.value = '';
+        this.textInput.blur();
       }
       this.setState({ isFocused: false, query: '' });
     }
@@ -290,6 +291,7 @@ var ReactTags = function (_Component) {
     value: function handleSuggestionClick(i) {
       if (this.state.suggestions[i].id !== 'Not Unique') {
         this.addTag(this.state.suggestions[i]);
+        this.handleBlur(i);
         this.setState({ isFocused: false });
       }
     }

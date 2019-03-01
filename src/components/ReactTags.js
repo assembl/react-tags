@@ -205,6 +205,7 @@ class ReactTags extends Component {
     }
     if (this.textInput) {
       this.textInput.value = '';
+      this.textInput.blur();
     }
     this.setState({ isFocused: false, query: '' });
   }
@@ -341,6 +342,7 @@ class ReactTags extends Component {
   handleSuggestionClick(i) {
     if (this.state.suggestions[i].id !== 'Not Unique') {
       this.addTag(this.state.suggestions[i]);
+      this.handleBlur(i);
       this.setState({ isFocused: false });
     }
   }
