@@ -261,7 +261,7 @@ class ReactTags extends Component {
       query === '' &&
       this.props.allowDeleteFromEmptyInput
     ) {
-      this.handleDelete(this.props.tags.length - 1, e);
+      this.resetInput();
     }
 
     // up arrow

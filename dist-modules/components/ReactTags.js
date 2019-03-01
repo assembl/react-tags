@@ -247,7 +247,7 @@ var ReactTags = function (_Component) {
 
       // when backspace key is pressed and query is blank, delete tag
       if (e.keyCode === _constants.KEYS.BACKSPACE && query === '' && this.props.allowDeleteFromEmptyInput) {
-        this.handleDelete(this.props.tags.length - 1, e);
+        this.resetInput();
       }
 
       // up arrow
