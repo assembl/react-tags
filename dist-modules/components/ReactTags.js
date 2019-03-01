@@ -320,15 +320,20 @@ var ReactTags = function (_Component) {
     }
   }, {
     key: 'render',
+
+
+    // getInput = () => {
+    //   this.setState({showInput: true, isFocused: true});
+    // };
+
     value: function render() {
       var _this4 = this;
 
       var tagItems = this.getTagItems();
 
-      var showInputButton = _react2.default.createElement(_AddComponent2.default, {
-        className: 'add-button',
+      var addComponent = _react2.default.createElement(_AddComponent2.default, {
+        className: 'add-tags',
         addComponent: this.props.addComponent,
-        onClick: this.getInput,
         isAdmin: this.props.isAdmin
       });
 
@@ -341,9 +346,10 @@ var ReactTags = function (_Component) {
           inputId = this.props.id,
           maxLength = this.props.maxLength;
 
-      var tagInput = this.state.showInput ? _react2.default.createElement(
+      var tagInput = this.props.isAdmin ? _react2.default.createElement(
         'div',
         { className: this.state.classNames.tagInput },
+        addComponent,
         _react2.default.createElement('input', {
           ref: function ref(input) {
             _this4.textInput = input;
@@ -384,7 +390,7 @@ var ReactTags = function (_Component) {
           'div',
           { className: this.state.classNames.selected },
           tagItems,
-          this.state.showInput ? tagInput : showInputButton
+          tagInput
         )
       );
     }
@@ -528,10 +534,6 @@ var _initialiseProps = function _initialiseProps() {
         allowDragDrop: allowDragDrop
       });
     });
-  };
-
-  this.getInput = function () {
-    _this5.setState({ showInput: true, isFocused: true });
   };
 };
 

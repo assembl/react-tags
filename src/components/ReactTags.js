@@ -396,18 +396,17 @@ class ReactTags extends Component {
     });
   };
 
-  getInput = () => {
-    this.setState({showInput: true, isFocused: true});
-  };
+  // getInput = () => {
+  //   this.setState({showInput: true, isFocused: true});
+  // };
 
   render() {
     const tagItems = this.getTagItems();
 
-    const showInputButton = (
+    const addComponent = (
       <AddComponent
-        className={'add-button'}
+        className={'add-tags'}
         addComponent={this.props.addComponent}
-        onClick={this.getInput}
         isAdmin={this.props.isAdmin}
       />
     );
@@ -421,8 +420,9 @@ class ReactTags extends Component {
     inputId = this.props.id,
     maxLength = this.props.maxLength;
 
-    const tagInput = this.state.showInput ? (
+    const tagInput = this.props.isAdmin ? (
       <div className={this.state.classNames.tagInput}>
+        {addComponent}
         <input
           ref={(input) => {
             this.textInput = input;
@@ -462,7 +462,7 @@ class ReactTags extends Component {
       <div className={ClassNames(this.state.classNames.tags, {'react-tags-wrapper-user': !this.props.isAdmin, 'react-tags-wrapper-admin': this.props.isAdmin})}>
         <div className={this.state.classNames.selected}>
           {tagItems}
-          {this.state.showInput ? tagInput : showInputButton}
+          {tagInput}
         </div>
       </div>
     );

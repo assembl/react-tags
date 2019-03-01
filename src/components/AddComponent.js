@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ClassNames from 'classnames';
 
 const plusStr = String.fromCharCode(43);
 
 const AddComponent = (props) => {
-  const { isAdmin, addComponent, onClick, className } = props;
+  const { isAdmin, addComponent, className } = props;
   if (!isAdmin) {
     return null;
   }
@@ -15,15 +16,14 @@ const AddComponent = (props) => {
   }
 
   return (
-    <button onClick={onClick} className={className} >
+    <span className={ClassNames('icon-input', className)}>
       {plusStr}
-    </button>
+    </span>
   );
 };
 
 AddComponent.propTypes = {
   className: PropTypes.string,
-  onClick: PropTypes.func.isRequired,
   isAdmin: PropTypes.bool,
   addComponent: PropTypes.func,
 };
