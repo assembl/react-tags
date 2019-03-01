@@ -28,10 +28,11 @@ class Tag extends Component {
       classNames,
     } = props;
     const { className = '' } = tag;
-    const tagComponent = ( <span
+    const tagComponent = ( <button
       className={ClassNames('tag-wrapper', classNames.tag, className)}
       style={{opacity: isDragging ? 0 : 1, 'cursor': canDrag(props) ? 'move' : 'auto'}}
-      onClick={props.onTagClicked}
+      //onClick={props.onTagClicked}
+      onClick={props.onDelete}
       onKeyDown={props.onTagClicked}
       onTouchStart={props.onTagClicked}>
       <span className='tag-name'>{label}</span>
@@ -39,10 +40,10 @@ class Tag extends Component {
         tag={props.tag}
         className={classNames.remove}
         removeComponent={props.removeComponent}
-        onClick={props.onDelete}
+        //onClick={props.onDelete}
         isAdmin={isAdmin}
       />
-    </span>
+    </button>
     );
     return connectDragSource(connectDropTarget(tagComponent));
   }

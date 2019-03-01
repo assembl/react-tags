@@ -44,7 +44,7 @@ class ReactTags extends Component {
     handleAddition: PropTypes.func,
     handleDrag: PropTypes.func,
     handleFilterSuggestions: PropTypes.func,
-    handleTagClick: PropTypes.func,
+    //handleTagClick: PropTypes.func,
     allowDeleteFromEmptyInput: PropTypes.bool,
     allowAdditionFromPaste: PropTypes.bool,
     allowDragDrop: PropTypes.bool,
@@ -164,16 +164,16 @@ class ReactTags extends Component {
     e.stopPropagation();
   }
 
-  handleTagClick(i, e) {
-    if (this.props.handleTagClick) {
-      this.props.handleTagClick(i, e);
-    }
-    if (!this.props.resetInputOnDelete) {
-      this.textInput && this.textInput.focus();
-    } else {
-      this.resetAndFocusInput();
-    }
-  }
+  // handleTagClick(i, e) {
+  //   if (this.props.handleTagClick) {
+  //     this.props.handleTagClick(i, e);
+  //   }
+  //   if (!this.props.resetInputOnDelete) {
+  //     this.textInput && this.textInput.focus();
+  //   } else {
+  //     this.resetAndFocusInput();
+  //   }
+  // }
 
   handleChange(e) {
     if (this.props.handleInputChange) {
@@ -387,7 +387,7 @@ class ReactTags extends Component {
           onDelete={this.handleDelete.bind(this, index)}
           moveTag={moveTag}
           removeComponent={removeComponent}
-          onTagClicked={this.handleTagClick.bind(this, index)}
+          //onTagClicked={this.handleTagClick.bind(this, index)}
           isAdmin={isAdmin}
           classNames={classNames}
           allowDragDrop={allowDragDrop}

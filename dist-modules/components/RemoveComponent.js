@@ -18,7 +18,6 @@ var crossStr = String.fromCharCode(215);
 var RemoveComponent = function RemoveComponent(props) {
   var isAdmin = props.isAdmin,
       removeComponent = props.removeComponent,
-      onClick = props.onClick,
       className = props.className;
 
   if (!isAdmin) {
@@ -31,15 +30,14 @@ var RemoveComponent = function RemoveComponent(props) {
   }
 
   return _react2.default.createElement(
-    'a',
-    { onClick: onClick, className: className, onKeyDown: onClick },
+    'span',
+    { className: className },
     crossStr
   );
 };
 
 RemoveComponent.propTypes = {
   className: _propTypes2.default.string,
-  onClick: _propTypes2.default.func.isRequired,
   isAdmin: _propTypes2.default.bool,
   removeComponent: _propTypes2.default.func
 };

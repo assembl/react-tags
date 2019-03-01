@@ -149,18 +149,18 @@ var ReactTags = function (_Component) {
       }
       e.stopPropagation();
     }
-  }, {
-    key: 'handleTagClick',
-    value: function handleTagClick(i, e) {
-      if (this.props.handleTagClick) {
-        this.props.handleTagClick(i, e);
-      }
-      if (!this.props.resetInputOnDelete) {
-        this.textInput && this.textInput.focus();
-      } else {
-        this.resetAndFocusInput();
-      }
-    }
+
+    // handleTagClick(i, e) {
+    //   if (this.props.handleTagClick) {
+    //     this.props.handleTagClick(i, e);
+    //   }
+    //   if (!this.props.resetInputOnDelete) {
+    //     this.textInput && this.textInput.focus();
+    //   } else {
+    //     this.resetAndFocusInput();
+    //   }
+    // }
+
   }, {
     key: 'handleChange',
     value: function handleChange(e) {
@@ -413,7 +413,7 @@ ReactTags.propTypes = {
   handleAddition: _propTypes2.default.func,
   handleDrag: _propTypes2.default.func,
   handleFilterSuggestions: _propTypes2.default.func,
-  handleTagClick: _propTypes2.default.func,
+  //handleTagClick: PropTypes.func,
   allowDeleteFromEmptyInput: _propTypes2.default.bool,
   allowAdditionFromPaste: _propTypes2.default.bool,
   allowDragDrop: _propTypes2.default.bool,
@@ -521,9 +521,9 @@ var _initialiseProps = function _initialiseProps() {
         labelField: labelField,
         onDelete: _this5.handleDelete.bind(_this5, index),
         moveTag: moveTag,
-        removeComponent: removeComponent,
-        onTagClicked: _this5.handleTagClick.bind(_this5, index),
-        isAdmin: isAdmin,
+        removeComponent: removeComponent
+        //onTagClicked={this.handleTagClick.bind(this, index)}
+        , isAdmin: isAdmin,
         classNames: classNames,
         allowDragDrop: allowDragDrop
       });
