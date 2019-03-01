@@ -491,7 +491,7 @@ var _initialiseProps = function _initialiseProps() {
       selectedIndex: -1
     });
 
-    _this5.resetAndFocusInput();
+    _this5.resetInput();
   };
 
   this.getTagItems = function () {

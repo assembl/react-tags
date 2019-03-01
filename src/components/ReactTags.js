@@ -333,7 +333,7 @@ class ReactTags extends Component {
       selectedIndex: -1
     });
 
-    this.resetAndFocusInput();
+    this.resetInput();
   };
 
   handleSuggestionClick(i) {
