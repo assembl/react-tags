@@ -71,7 +71,7 @@ var Tag = function (_Component) {
         {
           className: (0, _classnames2.default)('tag-wrapper', classNames.tag, className),
           style: { opacity: isDragging ? 0 : 1, 'cursor': (0, _utils.canDrag)(props) ? 'move' : 'auto' },
-          onClick: props.onDelete,
+          onClick: isAdmin ? props.onDelete : null,
           onKeyDown: props.onTagClicked,
           onTouchStart: props.onTagClicked },
         _react2.default.createElement(

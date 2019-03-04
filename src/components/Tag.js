@@ -31,7 +31,7 @@ class Tag extends Component {
     const tagComponent = ( <button
       className={ClassNames('tag-wrapper', classNames.tag, className)}
       style={{opacity: isDragging ? 0 : 1, 'cursor': canDrag(props) ? 'move' : 'auto'}}
-      onClick={props.onDelete}
+      onClick={isAdmin ? props.onDelete : null}
       onKeyDown={props.onTagClicked}
       onTouchStart={props.onTagClicked}>
       <span className='tag-name'>{label}</span>
