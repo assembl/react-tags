@@ -246,8 +246,8 @@ class ReactTags extends Component {
 
       if (selectedQuery !== '') {
         this.addTag(selectedQuery);
-        this.resetAndFocusInput();
-        this.setState({ isFocused: true });
+        //this.resetAndFocusInput();
+        //this.setState({ isFocused: true });
       }
     }
 
