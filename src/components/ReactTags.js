@@ -318,6 +318,19 @@ class ReactTags extends Component {
     // Return if tag has been already added
     if (allowUnique && existingKeys.indexOf(tag.id) >= 0) {
       return this.setState({suggestions: [{ id: 'Not Unique', text: allowUniqueWarning }]});
+    } else {
+      // call method to add
+      this.props.handleAddition(tag);
+
+      this.resetInput();
+
+      // reset the state
+      this.setState({
+        query: '',
+        isFocused: false,
+        selectionMode: false,
+        selectedIndex: -1
+      });
     }
     if (this.props.autocomplete) {
       const possibleMatches = this.filteredSuggestions(
@@ -332,19 +345,6 @@ class ReactTags extends Component {
         tag = possibleMatches[0];
       }
     }
-
-    // call method to add
-    this.props.handleAddition(tag);
-
-    this.resetInput();
-
-    // reset the state
-    this.setState({
-      query: '',
-      isFocused: false,
-      selectionMode: false,
-      selectedIndex: -1
-    });
   };
 
   handleSuggestionClick(i) {

@@ -485,6 +485,19 @@ var _initialiseProps = function _initialiseProps() {
     // Return if tag has been already added
     if (allowUnique && existingKeys.indexOf(tag.id) >= 0) {
       return _this5.setState({ suggestions: [{ id: 'Not Unique', text: allowUniqueWarning }] });
+    } else {
+      // call method to add
+      _this5.props.handleAddition(tag);
+
+      _this5.resetInput();
+
+      // reset the state
+      _this5.setState({
+        query: '',
+        isFocused: false,
+        selectionMode: false,
+        selectedIndex: -1
+      });
     }
     if (_this5.props.autocomplete) {
       var possibleMatches = _this5.filteredSuggestions(tag[labelField], _this5.props.suggestions);
@@ -493,19 +506,6 @@ var _initialiseProps = function _initialiseProps() {
         tag = possibleMatches[0];
       }
     }
-
-    // call method to add
-    _this5.props.handleAddition(tag);
-
-    _this5.resetInput();
-
-    // reset the state
-    _this5.setState({
-      query: '',
-      isFocused: false,
-      selectionMode: false,
-      selectedIndex: -1
-    });
   };
 
   this.getTagItems = function () {
