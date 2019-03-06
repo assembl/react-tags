@@ -313,10 +313,10 @@ class ReactTags extends Component {
     if (!tag.id || !tag[labelField]) {
       return;
     }
-    const existingKeys = tags.map((tag) => tag.id.toLowerCase());
+    const existingKeys = tags.map((tag) => tag.id);
 
     // Return if tag has been already added
-    if (allowUnique && existingKeys.indexOf(tag.id.toLowerCase()) >= 0) {
+    if (allowUnique && existingKeys.indexOf(tag.id) >= 0) {
       return this.setState({suggestions: [{ id: 'Not Unique', text: allowUniqueWarning }]});
     }
     if (this.props.autocomplete) {

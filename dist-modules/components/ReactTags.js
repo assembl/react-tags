@@ -479,11 +479,11 @@ var _initialiseProps = function _initialiseProps() {
       return;
     }
     var existingKeys = tags.map(function (tag) {
-      return tag.id.toLowerCase();
+      return tag.id;
     });
 
     // Return if tag has been already added
-    if (allowUnique && existingKeys.indexOf(tag.id.toLowerCase()) >= 0) {
+    if (allowUnique && existingKeys.indexOf(tag.id) >= 0) {
       return _this5.setState({ suggestions: [{ id: 'Not Unique', text: allowUniqueWarning }] });
     }
     if (_this5.props.autocomplete) {
