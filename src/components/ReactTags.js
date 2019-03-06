@@ -422,7 +422,7 @@ class ReactTags extends Component {
     maxLength = this.props.maxLength;
 
     const tagInput = this.props.isAdmin ? (
-      <div className={this.state.classNames.tagInput}>
+      <div className={ClassNames(this.state.classNames.tagInput, {'with-suggestions': this.state.suggestions !== null} )}>
         {addComponent}
         <input
           ref={(input) => {

@@ -348,7 +348,7 @@ var ReactTags = function (_Component) {
 
       var tagInput = this.props.isAdmin ? _react2.default.createElement(
         'div',
-        { className: this.state.classNames.tagInput },
+        { className: (0, _classnames2.default)(this.state.classNames.tagInput, { 'with-suggestions': this.state.suggestions !== null }) },
         addComponent,
         _react2.default.createElement('input', {
           ref: function ref(input) {
