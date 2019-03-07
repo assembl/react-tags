@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const crossStr = String.fromCharCode(215);
 const RemoveComponent = (props) => {
-  const { isAdmin, removeComponent, className } = props;
+  const { isAdmin, removeComponent, className, onClick } = props;
   if (!isAdmin) {
     return null;
   }
@@ -14,7 +14,7 @@ const RemoveComponent = (props) => {
   }
 
   return (
-    <span className={className}>
+    <span onClick={onClick} className={className} onKeyDown={onClick}>
       {crossStr}
     </span>
   );
@@ -22,6 +22,7 @@ const RemoveComponent = (props) => {
 
 RemoveComponent.propTypes = {
   className: PropTypes.string,
+  onClick: PropTypes.func,
   isAdmin: PropTypes.bool,
   removeComponent: PropTypes.func,
 };

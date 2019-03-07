@@ -28,20 +28,25 @@ class Tag extends Component {
       classNames,
     } = props;
     const { className = '' } = tag;
-    const tagComponent = ( <button
-      className={ClassNames('tag-wrapper', classNames.tag, className)}
-      style={{opacity: isDragging ? 0 : 1, 'cursor': canDrag(props) ? 'move' : 'auto'}}
-      onClick={isAdmin ? props.onDelete : null}
-      onKeyDown={props.onTagClicked}
-      onTouchStart={props.onTagClicked}>
-      <span className='tag-name'>{label}</span>
-      <RemoveComponent
-        tag={props.tag}
-        className={classNames.remove}
-        removeComponent={props.removeComponent}
-        isAdmin={isAdmin}
-      />
-    </button>
+    const tagComponent = (
+      <button
+        className={ClassNames('tag-wrapper', classNames.tag, className)}
+        style={{
+          opacity: isDragging ? 0 : 1,
+          cursor: canDrag(props) ? 'move' : 'pointer',
+        }}
+        onClick={props.onTagClicked}
+        onKeyDown={props.onTagClicked}
+        onTouchStart={props.onTagClicked}>
+        <span className="tag-name">{label}</span>
+        <RemoveComponent
+          tag={props.tag}
+          className={classNames.remove}
+          removeComponent={props.removeComponent}
+          isAdmin={isAdmin}
+          onClick={props.onDelete}
+        />
+      </button>
     );
     return connectDragSource(connectDropTarget(tagComponent));
   }

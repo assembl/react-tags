@@ -187,4 +187,6 @@ module.exports = {
 
   // Whether to use watchman for file crawling
   // watchman: true,
+  // Fix jest tests with new enzyme
+  testURL: 'http://localhost/',
 };

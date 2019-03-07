@@ -70,8 +70,11 @@ var Tag = function (_Component) {
         'button',
         {
           className: (0, _classnames2.default)('tag-wrapper', classNames.tag, className),
-          style: { opacity: isDragging ? 0 : 1, 'cursor': (0, _utils.canDrag)(props) ? 'move' : 'auto' },
-          onClick: isAdmin ? props.onDelete : null,
+          style: {
+            opacity: isDragging ? 0 : 1,
+            cursor: (0, _utils.canDrag)(props) ? 'move' : 'pointer'
+          },
+          onClick: props.onTagClicked,
           onKeyDown: props.onTagClicked,
           onTouchStart: props.onTagClicked },
         _react2.default.createElement(
@@ -83,7 +86,8 @@ var Tag = function (_Component) {
           tag: props.tag,
           className: classNames.remove,
           removeComponent: props.removeComponent,
-          isAdmin: isAdmin
+          isAdmin: isAdmin,
+          onClick: props.onDelete
         })
       );
       return connectDragSource(connectDropTarget(tagComponent));
