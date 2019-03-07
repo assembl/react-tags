@@ -21,10 +21,9 @@ import {
   DEFAULT_LABEL_FIELD,
 } from './constants';
 
-const updateClassNames  = memoizeOne((classNames) =>
-{
+const updateClassNames = memoizeOne((classNames) => {
   return {
-    classNames : {...DEFAULT_CLASSNAMES,...classNames},
+    classNames: { ...DEFAULT_CLASSNAMES, ...classNames },
   };
 });
 
@@ -114,11 +113,9 @@ class ReactTags extends Component {
     this.resetAndFocusInput = this.resetAndFocusInput.bind(this);
     this.handleSuggestionHover = this.handleSuggestionHover.bind(this);
     this.handleSuggestionClick = this.handleSuggestionClick.bind(this);
-
   }
 
-  static getDerivedStateFromProps(props)
-  {
+  static getDerivedStateFromProps(props) {
     const { classNames } = props;
     return updateClassNames(classNames);
   }
@@ -313,25 +310,15 @@ class ReactTags extends Component {
     if (!tag.id || !tag[labelField]) {
       return;
     }
-    const existingKeys = tags.map((tag) => tag.id);
+    const existingKeys = tags.map((tag) => tag.text.toLowerCase());
 
     // Return if tag has been already added
-    if (allowUnique && existingKeys.indexOf(tag.id) >= 0) {
-      return this.setState({suggestions: [{ id: 'Not Unique', text: allowUniqueWarning }]});
-    } else {
-      // call method to add
-      this.props.handleAddition(tag);
-
-      this.resetInput();
-
-      // reset the state
-      this.setState({
-        query: '',
-        isFocused: false,
-        selectionMode: false,
-        selectedIndex: -1
+    if (allowUnique && existingKeys.indexOf(tag.text.toLowerCase()) >= 0) {
+      return this.setState({
+        suggestions: [{ id: 'Not Unique', text: allowUniqueWarning }],
       });
     }
+
     if (this.props.autocomplete) {
       const possibleMatches = this.filteredSuggestions(
         tag[labelField],
@@ -345,6 +332,19 @@ class ReactTags extends Component {
         tag = possibleMatches[0];
       }
     }
+
+    // call method to add
+    this.props.handleAddition(tag);
+
+    this.resetInput();
+
+    // reset the state
+    this.setState({
+      query: '',
+      isFocused: false,
+      selectionMode: false,
+      selectedIndex: -1,
+    });
   };
 
   handleSuggestionClick(i) {
@@ -414,15 +414,18 @@ class ReactTags extends Component {
 
     // get the suggestions for the given query
     const query = this.state.query.trim(),
-    selectedIndex = this.state.selectedIndex,
-    suggestions = this.state.suggestions,
-    placeholder = this.props.placeholder,
-    inputName = this.props.name,
-    inputId = this.props.id,
-    maxLength = this.props.maxLength;
+      selectedIndex = this.state.selectedIndex,
+      suggestions = this.state.suggestions,
+      placeholder = this.props.placeholder,
+      inputName = this.props.name,
+      inputId = this.props.id,
+      maxLength = this.props.maxLength;
 
     const tagInput = this.props.isAdmin ? (
-      <div className={ClassNames(this.state.classNames.tagInput, {'with-suggestions': this.state.suggestions !== null} )}>
+      <div
+        className={ClassNames(this.state.classNames.tagInput, {
+          'with-suggestions': this.state.suggestions !== null,
+        })}>
         {addComponent}
         <input
           ref={(input) => {
@@ -460,7 +463,11 @@ class ReactTags extends Component {
       </div>
     ) : null;
     return (
-      <div className={ClassNames(this.state.classNames.tags, {'react-tags-wrapper-user': !this.props.isAdmin, 'react-tags-wrapper-admin': this.props.isAdmin})}>
+      <div
+        className={ClassNames(this.state.classNames.tags, {
+          'react-tags-wrapper-user': !this.props.isAdmin,
+          'react-tags-wrapper-admin': this.props.isAdmin,
+        })}>
         <div className={this.state.classNames.selected}>
           {tagItems}
           {tagInput}
