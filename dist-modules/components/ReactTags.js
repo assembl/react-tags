@@ -100,7 +100,6 @@ var ReactTags = function (_Component) {
     _this.resetAndFocusInput = _this.resetAndFocusInput.bind(_this);
     _this.handleSuggestionHover = _this.handleSuggestionHover.bind(_this);
     _this.handleSuggestionClick = _this.handleSuggestionClick.bind(_this);
-
     return _this;
   }
 
@@ -348,7 +347,10 @@ var ReactTags = function (_Component) {
 
       var tagInput = this.props.isAdmin ? _react2.default.createElement(
         'div',
-        { className: (0, _classnames2.default)(this.state.classNames.tagInput, { 'with-suggestions': this.state.suggestions !== null }) },
+        {
+          className: (0, _classnames2.default)(this.state.classNames.tagInput, {
+            'with-suggestions': this.state.suggestions !== null
+          }) },
         addComponent,
         _react2.default.createElement('input', {
           ref: function ref(input) {
@@ -385,7 +387,11 @@ var ReactTags = function (_Component) {
       ) : null;
       return _react2.default.createElement(
         'div',
-        { className: (0, _classnames2.default)(this.state.classNames.tags, { 'react-tags-wrapper-user': !this.props.isAdmin, 'react-tags-wrapper-admin': this.props.isAdmin }) },
+        {
+          className: (0, _classnames2.default)(this.state.classNames.tags, {
+            'react-tags-wrapper-user': !this.props.isAdmin,
+            'react-tags-wrapper-admin': this.props.isAdmin
+          }) },
         _react2.default.createElement(
           'div',
           { className: this.state.classNames.selected },
@@ -479,26 +485,16 @@ var _initialiseProps = function _initialiseProps() {
       return;
     }
     var existingKeys = tags.map(function (tag) {
-      return tag.id;
+      return tag.text.toLowerCase();
     });
 
     // Return if tag has been already added
-    if (allowUnique && existingKeys.indexOf(tag.id) >= 0) {
-      return _this5.setState({ suggestions: [{ id: 'Not Unique', text: allowUniqueWarning }] });
-    } else {
-      // call method to add
-      _this5.props.handleAddition(tag);
-
-      _this5.resetInput();
-
-      // reset the state
-      _this5.setState({
-        query: '',
-        isFocused: false,
-        selectionMode: false,
-        selectedIndex: -1
+    if (allowUnique && existingKeys.indexOf(tag.text.toLowerCase()) >= 0) {
+      return _this5.setState({
+        suggestions: [{ id: 'Not Unique', text: allowUniqueWarning }]
       });
     }
+
     if (_this5.props.autocomplete) {
       var possibleMatches = _this5.filteredSuggestions(tag[labelField], _this5.props.suggestions);
 
@@ -506,6 +502,19 @@ var _initialiseProps = function _initialiseProps() {
         tag = possibleMatches[0];
       }
     }
+
+    // call method to add
+    _this5.props.handleAddition(tag);
+
+    _this5.resetInput();
+
+    // reset the state
+    _this5.setState({
+      query: '',
+      isFocused: false,
+      selectionMode: false,
+      selectedIndex: -1
+    });
   };
 
   this.getTagItems = function () {
