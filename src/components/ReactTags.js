@@ -77,7 +77,7 @@ class ReactTags extends Component {
     labelField: DEFAULT_LABEL_FIELD,
     suggestions: [],
     delimiters: [KEYS.ENTER, KEYS.TAB],
-    autofocus: true,
+    autofocus: false,
     inline: true,
     handleDelete: noop,
     handleAddition: noop,
@@ -433,7 +433,7 @@ class ReactTags extends Component {
           }}
           className={this.state.classNames.tagInputField}
           type="text"
-          autoFocus={true}
+          autoFocus={false}
           placeholder={placeholder}
           aria-label={placeholder}
           onFocus={this.handleFocus}
