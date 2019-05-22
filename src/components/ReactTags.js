@@ -336,7 +336,7 @@ class ReactTags extends Component {
     // call method to add
     this.props.handleAddition(tag);
 
-    this.resetInput();
+    this.resetAndBlurInput();
 
     // reset the state
     this.setState({

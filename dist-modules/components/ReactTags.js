@@ -506,7 +506,7 @@ var _initialiseProps = function _initialiseProps() {
     // call method to add
     _this5.props.handleAddition(tag);
 
-    _this5.resetInput();
+    _this5.resetAndBlurInput();
 
     // reset the state
     _this5.setState({
